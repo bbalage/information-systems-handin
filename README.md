@@ -1,27 +1,36 @@
-# InformationSystemsHandin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+# Feladatkiírás:
+## 2. Könyvtári nyilvántartás
 
-## Development server
+### Általános leírás
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+A cél, egy képzeletbeli könyvtári kölcsönző-nyilvántartó szoftver tervezése és implementálása. A könyvtárban könyveket és multimédia anyagokat (cd, kazetta) lehet kölcsönözni, beiratkozott tagoknak. Az alkalmazást a könyvtár vezetője és dolgozói használják, hogy regisztrálják a ki és beiratkozásokat és ellenőrizzék a tagok kölcsönzéseit, listázzák azokat a tagokat, akik nem vitték vissza a kölcsönzött anyagokat időben.
 
-## Code scaffolding
+#### Felhasználási esetek
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+##### Tagnyílvántartás
 
-## Build
+A rendszer nyílvántartja a könyvtár kölcsönzőit. Új tagok felvételénél a rendszer bekéri a nevet, telefonszámot, személyigazolvány számot, lakcímet. A regisztrálás után, a rendszer egyedi azonosítóval látja el a tagokat. A felvettek listájában lehet keresni név, személyigazolvány szám, azonosító alapján. A tagok adatait lehet módosítani vagy egy létező tagot törölni. A törlés csak státuszváltással jár, nem fizikai törléssel.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+##### Készletnyílvántartás
 
-## Running unit tests
+A rendszer nyílvántartja a könyvek és multimédia anyagok adatait: pl. típus (cd, könyv, kotta), szerző, cím, beszerzés dátuma, sorszám, státusz (szabad, kikölcsönzött, selejtezett). Itt lehet az új könyveket nyílvántartásba venni. A könyvtár készletét lehet listázni, keresni cím, szerző szerint.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+##### Kölcsönzés
 
-## Running end-to-end tests
+Amikor egy tag kölcsönözni szeretne, szükség van az azonosító adataira, illetve egy kölcsönzendő könyv, cd azonosítójára. A rendszerben először a felhasználót kell kikeresni. Az adatlapon meg lehet nézni, hogy van-e már kölcsönözve neki valami. A kikölcsönzött tételek száma maximálva van. (pl 6)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+##### Kölcsönzés befejezése
 
-## Further help
+Amikor valaki visszahoz a könyvtári egységét, akkor azt azonosítója alapján lehet felszabadítani. Az ügyintéző a sorszám alapján rákeres az adott könyvre, cd-re és az adatlapján visszaállíthatja szabad státuszúra, így megszűnik a kölcsönzés. Az adatlapnak tartalmaznia kell, hogy mikor kölcsönözték ki, és ki volt az, amennyiben kikölcsönzött állapotban van.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##### Késések lekérdezése
+
+A rendszer lehetőséget ad egy bizonyos idő után (pl 30 nap – konfigurálható) még mindig kikölcsönzött könyvek lekérdezésére. A listában szerepelnie kell a tételeknek és a kölcsönző adatainak is, illetve a kikölcsönzés dátumának, és a számított késésnek is.
+
+### Feladatok:
+- [ ] Tagnyilvántartás
+- [ ] Készletnyílvántartás
+- [ ] Kölcsönzés
+- [ ] Kölcsönzés befejezése
+- [ ] Késések lekérdezése
