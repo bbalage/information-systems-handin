@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable} from "typeorm";
 import { Borrowable } from "./Borrowable";
+import { BorrowableItem } from "./BorrowableItem";
 import { Member } from "./Member";
 
 @Entity()
@@ -11,8 +12,8 @@ export class Borrow {
     @ManyToOne(() => Member, (member) => member.id)
     member: Member;
 
-    @ManyToOne(() => Borrowable, (borrowable) => borrowable.serial_number)
-    borrowable: Borrowable;
+    @ManyToOne(() => BorrowableItem, (borrowableItem) => borrowableItem.serial_number)
+    borrowableItem: BorrowableItem;
 
     @Column({ nullable: false, type: "date" })
     date_of_borrow: Date;

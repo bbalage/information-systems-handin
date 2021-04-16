@@ -6,7 +6,7 @@ import { BorrowableItem } from "./BorrowableItem";
 export class Borrowable {
 
     @PrimaryGeneratedColumn()
-    serial_number: number;
+    id: number;
 
     @OneToMany(() => BorrowableItem, (borrowableItem) => borrowableItem.borrowable)
     borrowableItems: BorrowableItem[];

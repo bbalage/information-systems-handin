@@ -67,17 +67,17 @@ async function addTestData(connection) {
     borrowableItem2.borrowable = borrowable2;
 
     const borrow1 = new Borrow();
-    borrow1.borrowable = borrowable1;
+    borrow1.borrowableItem = borrowableItem1;
     borrow1.member = member1;
     borrow1.date_of_borrow = new Date(2019, 10, 10);
 
     const borrow2 = new Borrow();
-    borrow2.borrowable = borrowable1;
+    borrow2.borrowableItem = borrowableItem1;
     borrow2.member = member2;
     borrow2.date_of_borrow = new Date(2020, 1, 23);
 
     const borrow3 = new Borrow();
-    borrow3.borrowable = borrowable2;
+    borrow3.borrowableItem = borrowableItem2;
     borrow3.member = member1;
     borrow3.date_of_borrow = new Date(2019, 1, 23);
 
@@ -88,6 +88,9 @@ async function addTestData(connection) {
 
     await connection.manager.save(borrowable1);
     await connection.manager.save(borrowable2);
+    await connection.manager.save(borrowableItem1);
+    await connection.manager.save(borrowableItem2);
+    await connection.manager.save(borrowableItem3);
     await connection.manager.save(member1);
     await connection.manager.save(member2);
     await connection.manager.save(borrow1);

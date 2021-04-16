@@ -11,7 +11,7 @@ export class BorrowableItem {
     @ManyToOne(() => Borrowable, (borrowable) => borrowable.borrowableItems)
     borrowable: Borrowable;
 
-    @OneToMany(() => Borrow, (borrow) => borrow.borrowable)
+    @OneToMany(() => Borrow, (borrow) => borrow.borrowableItem)
     borrows: Borrow[];
 
     @Column({ nullable: false, type: "date" })
