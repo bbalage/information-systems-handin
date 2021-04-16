@@ -5,7 +5,7 @@
    "username": "n5if3v",
    "password": "n5if3vX?9",
    "database": "information_systems_handin",
-   "synchronize": true,
+   "synchronize": false,
    "logging": false,
    "entities": [
       "src/entity/**/*.ts"

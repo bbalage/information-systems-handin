@@ -8,7 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start-backend": "cd backend && ts-node-dev src/index.ts"
+    "start-backend": "cd backend && ts-node-dev src/index.ts",
+    "typeorm-migration-generate": "cd backend && ts-node ./node_modules/typeorm/cli.js migration:generate -n ",
+    "typeorm-migration-run": "cd backend && ts-node ./node_modules/typeorm/cli.js migration:run",
+    "typeorm-migration-revert": "cd backend && ts-node ./node_modules/typeorm/cli.js migration:revert"
   },
   "private": true,
   "dependencies": {
