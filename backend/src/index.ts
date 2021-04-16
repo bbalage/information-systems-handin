@@ -5,6 +5,7 @@ import { getRouter } from "./routes";
 import { Member } from "./entity/Member";
 import { Borrowable } from "./entity/Borrowable";
 import { Borrow } from "./entity/Borrow";
+import { BorrowableItem } from "./entity/BorrowableItem";
 
 createConnection().then(async connection => {
 
@@ -41,18 +42,29 @@ async function addTestData(connection) {
     const borrowable1 = new Borrowable();
     borrowable1.title = "Big Book of little matters";
     borrowable1.author = "Steven Sea Gull";
-    borrowable1.acquirement_date = new Date(2000, 1, 1);
     borrowable1.max_borror_time = 30;
-    borrowable1.status = 'f';
     borrowable1.type = 'b';
 
     const borrowable2 = new Borrowable();
     borrowable2.title = "Very evil villain fights very heroic hero";
     borrowable2.author = "Stan Lee";
-    borrowable2.acquirement_date = new Date(1998, 10, 7);
     borrowable2.max_borror_time = 25;
-    borrowable2.status = 'f';
     borrowable2.type = 'b';
+
+    const borrowableItem1 = new BorrowableItem();
+    borrowableItem1.status = 'f';
+    borrowableItem1.acquirement_date = new Date(1998, 10, 7);
+    borrowableItem1.borrowable = borrowable1;
+
+    const borrowableItem2 = new BorrowableItem();
+    borrowableItem2.status = 'f';
+    borrowableItem2.acquirement_date = new Date(2000, 1, 1);
+    borrowableItem2.borrowable = borrowable2;
+
+    const borrowableItem3 = new BorrowableItem();
+    borrowableItem3.status = 'f';
+    borrowableItem3.acquirement_date = new Date(2000, 1, 1);
+    borrowableItem2.borrowable = borrowable2;
 
     const borrow1 = new Borrow();
     borrow1.borrowable = borrowable1;
