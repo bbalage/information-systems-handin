@@ -6,7 +6,7 @@ import { addTestData } from "./util/testData";
 
 createConnection().then(async connection => {
 
-    await addTestData(connection);
+    //await addTestData(connection);
 
     const app = express();
 
