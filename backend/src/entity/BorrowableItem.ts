@@ -6,7 +6,7 @@ import { Borrowable } from "./Borrowable";
 export class BorrowableItem {
 
     @PrimaryGeneratedColumn()
-    serial_number: number;
+    serialNumber: number;
 
     @ManyToOne(() => Borrowable, (borrowable) => borrowable.borrowableItems)
     borrowable: Borrowable;
@@ -15,7 +15,7 @@ export class BorrowableItem {
     borrows: Borrow[];
 
     @Column({ nullable: false, type: "date" })
-    acquirement_date: Date;
+    acquirementDate: Date;
 
     /**
      * CD:          'c';

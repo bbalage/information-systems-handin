@@ -17,7 +17,7 @@ export class Member {
     phoneNumber: string;
 
     @Column({ nullable: false, type: "char", length: 8, unique: true })
-    id_card_number: string;
+    idCardNumber: string;
 
     @Column({ nullable: false, type: "varchar", length: 100 })
     address: string;

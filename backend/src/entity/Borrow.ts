@@ -7,14 +7,14 @@ import { Member } from "./Member";
 export class Borrow {
 
     @PrimaryGeneratedColumn()
-    borrow_id: number;
+    borrowId: number;
 
     @ManyToOne(() => Member, (member) => member.id)
     member: Member;
 
-    @ManyToOne(() => BorrowableItem, (borrowableItem) => borrowableItem.serial_number)
+    @ManyToOne(() => BorrowableItem, (borrowableItem) => borrowableItem.serialNumber)
     borrowableItem: BorrowableItem;
 
     @Column({ nullable: false, type: "date" })
-    date_of_borrow: Date;
+    dateOfBorrow: Date;
 }

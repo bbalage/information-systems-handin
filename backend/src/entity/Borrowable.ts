@@ -18,7 +18,7 @@ export class Borrowable {
     author: string;
 
     @Column({ nullable: false, type: "integer" })
-    max_borror_time: number;
+    maxBorrowTime: number;
 
     /**
      * Borrowed:  'b';
