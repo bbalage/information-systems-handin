@@ -1,0 +1,66 @@
+Könyvek
+Multimédia anyagok (CD, kazetta)
+Beiratkozott tagok
+Vezető és dolgozók használják
+Ki és beiratkozások regisztrálása
+
+Tagnyilvántartás:
+- Kölcsönző:
+  --> Id (generated)
+  --> Név (input)
+  --> Telefonszám (input)
+  --> Személyigazolvány szám (input)
+  --> Lakcím (input)
+  --> Státusz (generated) [active, inactive]
+  Keresés lehet a következők alapján:
+    --> Név
+    --> Személyigazolvány szám
+    --> Id
+  Egy tagot lehet:
+    --> Felvenni
+    --> Módosítani
+    --> Törölni (státuszváltás)
+
+Készletnyilvántartás:
+- Kölcsönözhető anyag:
+  --> sorszám (id)
+  --> típus [cd, könyv, kotta]
+  --> szerző
+  --> cím
+  --> beszerzés dátuma
+  --> státusz [szabad, kikölcsönzött, selejtezett)
+  --> ?Max kikölcsönzési idő?
+  Keresés lehet a következők alapján:
+  --> Cím
+  --> Szerző
+  Anyagot lehet:
+  --> Felvenni
+  --> Listázni
+  --> (optional) selejtezni?
+
+Kölcsönzés:
+- Kölcsönzés:
+  --> Tag id
+  --> Kölcsönözhető anyag id
+  --> Kölcsönzés kezdete (see below*)
+  1. Először a felhasználót kell kikeresni:
+  2. Az adatlapon meg lehet nézni, hogy van-e már kölcsönözve neki valami
+  3. Ha a maximum kikölcsönözhető anyagok (például 6) száma fölé menne a kölcsönzés, akkor nem kölcsönözhet
+
+Kölcsönzés befejezése:
+  1. A kölcsönzött anyagot id alapján lehet felszabadítani
+  2. Ez a szabad státusz visszaállítását jelenti; így megszűnik a kölcsönzés
+  3. Az adatlapnak tartalmazni kell, hogy
+    --> mikor kölcsönözték ki (see above*)
+    --> ki kölcsönözte ki
+
+Késések lekérdezés:
+  Egy bizonyos konfigurálható idő (pl 30 nap) után is kint lévő kikölcsönzöttek lekérdezése.
+  - A listában szerepel:
+    --> Kölcsönzött anyag
+    --> Kölcsönző adatai
+    --> Kikölcsönzés dátuma
+    --> Számított késés
+
+KÉRDÉS: Maximális kikölcsönzési idő (pl 30 napig lehet kikölcsönözve), ami konfigurálható; elemenként legyen konfigurálható, vagy globálisan egy időpont?
+  --> Szerintem elemenként
