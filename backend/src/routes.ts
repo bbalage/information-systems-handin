@@ -9,7 +9,7 @@ export function getRouter(): Router {
     router.get('/members', memberController.get);
     router.post('/members/create', memberController.create);
     router.delete('/members/delete/:id', memberController.delete);
-    router.put('members/update/:id', memberController.update);
+    router.put('/members/update/:id', memberController.update);
 
     return router;
 }

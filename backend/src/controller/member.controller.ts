@@ -149,8 +149,26 @@ export class MemberController extends Controller {
     }
 
     update = async (req, res) => {
-        //TODO
-        this.handleError(res, 500, "Method not yet implemented");
+        try {
+            const id = req.params.id;
+            if (!id) {
+                this.handleError(res, 400, 'No id was given');
+                return;
+            }
+            const member = await this.repository.findOne(id);
+            if (!member) {
+                this.handleError(res, 404, 'No member found with given id.');
+                return;
+            }
+            const newMember = req.body;
+            newMember.id = member.id;
+            const updatedMember = await this.repository.save(newMember);
+            res.json({ success: true, data: updatedMember });
+        }
+        catch (err) {
+            console.log("Could not update.");
+            this.handleError(res);
+        }
     }
 
     updateActivate = async (req, res) => {
