@@ -13,7 +13,16 @@ export class MemberController extends Controller {
         member.idCardNumber = req.body.idCardNumber;
         member.address = req.body.address;
         member.status = MemberStatusEnum.ACTIVE;
+        console.log(member);
         try {
+            const retrievedMember = await this.repository
+                .createQueryBuilder('member')
+                .where("member.idCardNumber = :idCardNumber", {idCardNumber: member.idCardNumber})
+                .getOne();
+            if (retrievedMember) {
+                this.handleError(res, 400, "Given member already exists.");
+                return;
+            }
             const insertedMember = await this.repository.save(member);
             res.json({success: true, data: insertedMember});
         }
@@ -119,7 +128,7 @@ export class MemberController extends Controller {
 
     delete = async (req, res) => {
         //TODO
-        this.handleError(res, 500, "Method not yet implemented");
+        this.handleError(res, 500, "Method not yet implemented")
     }
 
     update = async (req, res) => {
