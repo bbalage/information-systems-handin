@@ -9,7 +9,7 @@ export enum BorrowableTypeEnum {
     MUSIC_SHEET = 'm'
 }
 
-export enum BorrowableItemStatusEnum {
+export enum BorrowableStatusEnum {
     FREE = 'f',
     BORROWED = 'b',
     DISCARDED = 'd'
