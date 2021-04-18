@@ -16,6 +16,7 @@ export function getRouter(): Router {
     router.put('/members/update/activate/:id', memberController.updateActivate);
 
     router.post('/borrowables/create', borrowableController.create);
+    router.get('/borrowables', borrowableController.get);
 
     return router;
 }
