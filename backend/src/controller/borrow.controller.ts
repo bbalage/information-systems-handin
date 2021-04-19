@@ -1,9 +1,8 @@
-import { getConnection, getRepository } from "typeorm";
+import { getRepository } from "typeorm";
 import { Borrow } from "../entity/Borrow";
 import { Borrowable } from "../entity/Borrowable";
 import { Member } from "../entity/Member";
 import { Controller } from "./controller";
-import { getManager } from "typeorm";
 import { BorrowableStatusEnum } from "../util/enums";
 
 interface MemberOutDto extends Member {
@@ -173,6 +172,7 @@ export class BorrowController extends Controller {
             const member = await this.memberRepository
                 .createQueryBuilder('member')
                 .innerJoin("member.borrows", "borrow")
+                //.innerJoinAndSelect('product.uploader', 'uploader')
                 .where("borrow.borrowId = :id", { id: latestBorrowWithInputId.borrowId})
                 .getOne();
             
@@ -193,5 +193,28 @@ export class BorrowController extends Controller {
         ) => {
         const retObj = {borrowable, borrow, member};
         return retObj;
+    }
+
+    setBorrowableFree = async (req, res) => {
+        try {
+            const borrowableId = req.params.id;
+            const borrowable = await this.borrowableRepository.findOne(borrowableId);
+            if (!borrowable) {
+                this.handleError(res, 404, "No borrowable with given id.");
+                return;
+            }
+            if (borrowable.status !== BorrowableStatusEnum.BORROWED) {
+                this.handleError(res, 400, "Borrowable with given id is not booked.");
+                return;
+            }
+            borrowable.status = BorrowableStatusEnum.FREE;
+            const freedBorrowable: Borrowable = await this.borrowableRepository
+                .save(borrowable);
+            res.json({ success: true, borrowable: freedBorrowable });
+        }
+        catch(err) {
+            console.log(err);
+            this.handleError(res);
+        }
     }
 }
