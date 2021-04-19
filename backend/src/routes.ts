@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { BorrowableController } from './controller/borrowable.conroller';
+import { BorrowController } from './controller/borrow.controller';
+import { BorrowableController } from './controller/borrowable.controller';
 import { MemberController } from './controller/member.controller';
 
 export function getRouter(): Router {
@@ -7,6 +8,7 @@ export function getRouter(): Router {
 
     const memberController = new MemberController();
     const borrowableController = new BorrowableController();
+    const borrowController = new BorrowController();
 
     /*Endpoints linked to MemberController*/
     router.get('/members', memberController.get);
@@ -17,6 +19,8 @@ export function getRouter(): Router {
 
     router.post('/borrowables/create', borrowableController.create);
     router.get('/borrowables', borrowableController.get);
+
+    router.get('/borrow/member-data/:id', borrowController.getMemberWithNumberOfCurrentBorrows);
 
     return router;
 }
