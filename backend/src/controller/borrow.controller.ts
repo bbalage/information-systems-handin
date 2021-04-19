@@ -11,6 +11,12 @@ interface MemberOutDto extends Member {
     numberOfStillAllowedBorrows?: number;
 }
 
+interface MergedBorrowableBorrowAndMember {
+    borrowable: Borrowable;
+    borrow: Borrow | undefined;
+    member: Member | undefined;
+}
+
 export class BorrowController extends Controller {
     readonly MAX_BORROWS: number = 6;
     memberRepository = getRepository(Member);
@@ -142,26 +148,19 @@ export class BorrowController extends Controller {
                 this.handleError(res, 404, "No borrowable by given id.");
             }
             if (borrowable.status === BorrowableStatusEnum.FREE) {
-                res.json({ success: true, data: borrowable});
+                const prunedRetObj: MergedBorrowableBorrowAndMember = {
+                    borrowable: borrowable,
+                    borrow: undefined,
+                    member: undefined
+                } 
+                res.json({ success: true, data: prunedRetObj});
+                
                 return;
             }
             if (borrowable.status === BorrowableStatusEnum.DISCARDED) {
                 this.handleError(res, 403, "The required borrowable has been discarded.");
                 return;
             }
-            /*const retData = await this.borrowableRepository
-                .createQueryBuilder('borrowable')
-                .innerJoin("borrowable.borrows", "borrow")
-                .innerJoin("borrow.member", "member")
-                .where(subQueryBuilder => {
-                    const subQuery = subQueryBuilder.subQuery()
-                        .select("MAX(borrow.dateOfBorrow) maxDateOfBorrow")
-                        .from(Borrow, "borrow")
-                        .getQuery();
-                        return "borrow.dateOfBorrow = " + subQuery;
-                })
-                .andWhere("borrowable.serialNumber = :idOfBorrowable", {idOfBorrowable: idOfBorrowable})
-                .getMany();*/
             
             const latestBorrowsWithInputId = await this.borrowRepository
                 .createQueryBuilder('borrow')
@@ -177,7 +176,7 @@ export class BorrowController extends Controller {
                 .where("borrow.borrowId = :id", { id: latestBorrowWithInputId.borrowId})
                 .getOne();
             
-            const retObj = this.mergeBorrowableBorrowAndMemberObjects(
+            const retObj: MergedBorrowableBorrowAndMember = this.mergeBorrowableBorrowAndMemberObjects(
                 borrowable, latestBorrowWithInputId, member
             );
 
