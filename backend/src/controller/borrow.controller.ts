@@ -133,4 +133,66 @@ export class BorrowController extends Controller {
             console.log(err);
         }
     }
+
+    getBorrowableWithCurrentBorrowerAndReturn = async (req, res) => {
+        try {
+            const idOfBorrowable = req.params.idOfBorrowable;
+            const borrowable = await this.borrowableRepository.findOne(idOfBorrowable);
+            if (!borrowable) {
+                this.handleError(res, 404, "No borrowable by given id.");
+            }
+            if (borrowable.status === BorrowableStatusEnum.FREE) {
+                res.json({ success: true, data: borrowable});
+                return;
+            }
+            if (borrowable.status === BorrowableStatusEnum.DISCARDED) {
+                this.handleError(res, 403, "The required borrowable has been discarded.");
+                return;
+            }
+            /*const retData = await this.borrowableRepository
+                .createQueryBuilder('borrowable')
+                .innerJoin("borrowable.borrows", "borrow")
+                .innerJoin("borrow.member", "member")
+                .where(subQueryBuilder => {
+                    const subQuery = subQueryBuilder.subQuery()
+                        .select("MAX(borrow.dateOfBorrow) maxDateOfBorrow")
+                        .from(Borrow, "borrow")
+                        .getQuery();
+                        return "borrow.dateOfBorrow = " + subQuery;
+                })
+                .andWhere("borrowable.serialNumber = :idOfBorrowable", {idOfBorrowable: idOfBorrowable})
+                .getMany();*/
+            
+            const latestBorrowsWithInputId = await this.borrowRepository
+                .createQueryBuilder('borrow')
+                .innerJoin("borrow.borrowable", "borrowable")
+                .where("borrowable.serialNumber = :idOfBorrowable AND NOT borrow.returned", {idOfBorrowable: idOfBorrowable})
+                .orderBy("borrow.dateOfBorrow -1")
+                .getMany();
+            
+            const latestBorrowWithInputId = latestBorrowsWithInputId.pop();
+            const member = await this.memberRepository
+                .createQueryBuilder('member')
+                .innerJoin("member.borrows", "borrow")
+                .where("borrow.borrowId = :id", { id: latestBorrowWithInputId.borrowId})
+                .getOne();
+            
+            const retObj = this.mergeBorrowableBorrowAndMemberObjects(
+                borrowable, latestBorrowWithInputId, member
+            );
+
+            res.json({ success: true, data: retObj });
+        }
+        catch(err) {
+            console.log(err);
+            this.handleError(res, 500);
+        }
+    }
+
+    private mergeBorrowableBorrowAndMemberObjects = (
+            borrowable: Borrowable, borrow: Borrow, member: Member
+        ) => {
+        const retObj = {borrowable, borrow, member};
+        return retObj;
+    }
 }

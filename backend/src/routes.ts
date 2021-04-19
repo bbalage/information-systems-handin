@@ -22,6 +22,7 @@ export function getRouter(): Router {
 
     router.get('/borrow/member-data/:id', borrowController.getMemberWithNumberOfCurrentBorrowsAndReturnInResponse);
     router.post('/borrow/create/:memberId', borrowController.createBorrows);
+    router.get('/borrow/borrowable-data/:idOfBorrowable', borrowController.getBorrowableWithCurrentBorrowerAndReturn);
 
     return router;
 }
