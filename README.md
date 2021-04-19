@@ -29,8 +29,8 @@ Amikor valaki visszahoz a könyvtári egységét, akkor azt azonosítója alapj�
 A rendszer lehetőséget ad egy bizonyos idő után (pl 30 nap – konfigurálható) még mindig kikölcsönzött könyvek lekérdezésére. A listában szerepelnie kell a tételeknek és a kölcsönző adatainak is, illetve a kikölcsönzés dátumának, és a számított késésnek is.
 
 ### Feladatok:
-- [ ] [x] Tagnyilvántartás
-- [ ] [x] Készletnyílvántartás
-- [ ] [ ] Kölcsönzés
-- [ ] [ ] Kölcsönzés befejezése
-- [ ] [ ] Késések lekérdezése
+- [ ] - [x] Tagnyilvántartás
+- [ ] - [x] Készletnyílvántartás
+- [ ] - [ ] Kölcsönzés
+- [ ] - [ ] Kölcsönzés befejezése
+- [ ] - [ ] Késések lekérdezése

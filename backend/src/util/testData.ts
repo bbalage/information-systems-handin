@@ -40,16 +40,19 @@ export async function addTestData(connection) {
     borrow1.borrowable = borrowable1;
     borrow1.member = member1;
     borrow1.dateOfBorrow = new Date(2019, 10, 10);
+    borrow1.returned = false;
 
     const borrow2 = new Borrow();
     borrow2.borrowable = borrowable1;
     borrow2.member = member2;
     borrow2.dateOfBorrow = new Date(2020, 1, 23);
+    borrow2.returned = true;
 
     const borrow3 = new Borrow();
     borrow3.borrowable = borrowable2;
     borrow3.member = member1;
     borrow3.dateOfBorrow = new Date(2019, 1, 23);
+    borrow3.returned = true;
 
     await connection.manager.save(borrowable1);
     await connection.manager.save(borrowable2);

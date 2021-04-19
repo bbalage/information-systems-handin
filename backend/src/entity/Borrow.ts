@@ -16,4 +16,8 @@ export class Borrow {
 
     @Column({ nullable: false, type: "date" })
     dateOfBorrow: Date;
+
+    @Column({ nullable: false, type: "boolean" })
+    returned: boolean;
+
 }
