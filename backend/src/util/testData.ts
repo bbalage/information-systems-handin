@@ -18,7 +18,7 @@ export async function addTestData(connection) {
     member2.phoneNumber = "+36 20 998 7352";
     member2.idCardNumber = "012ME123";
     member2.address = "3555, Miskolc, Oláh Leonídasz utca 647.";
-    member2.status = 'i';
+    member2.status = 'a';
 
     const borrowable1 = new Borrowable();
     borrowable1.title = "Big Book of little matters";
@@ -26,7 +26,7 @@ export async function addTestData(connection) {
     borrowable1.maxBorrowTime = 30;
     borrowable1.type = BorrowableTypeEnum.BOOK;
     borrowable1.acquirementDate = new Date(2017, 10, 5);
-    borrowable1.status = BorrowableStatusEnum.FREE;
+    borrowable1.status = BorrowableStatusEnum.BORROWED;
     
     const borrowable2 = new Borrowable();
     borrowable2.title = "Very evil villain fights very heroic hero";

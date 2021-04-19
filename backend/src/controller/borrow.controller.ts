@@ -35,17 +35,17 @@ export class BorrowController extends Controller {
 
     private getMemberWithNumberOfCurrentBorrows = async (idOfMember, res) :Promise<MemberOutDto> => {
         try {
-            const retMembers = await this.memberRepository.findByIds(idOfMember);
-            if(retMembers.length != 1) {
+            const retMember: MemberOutDto = await this.memberRepository.findOne(idOfMember);
+            if(!retMember) {
                 this.handleError(res, 404, 'No member found with given id.');
                 return;
             }
-            const retMember : MemberOutDto = retMembers[0];
-            const joinedMember = await this.memberRepository.createQueryBuilder('member')
+            const joinedMembers = await this.memberRepository.createQueryBuilder('member')
+                .select("COUNT(member.id) count")
                 .innerJoin("member.borrows", "borrow")
                 .where("member.id = :id AND NOT borrow.returned", {id: idOfMember})
-                .getMany();
-            retMember.numberOfCurrentBorrows = joinedMember.length;
+                .getRawOne();
+            retMember.numberOfCurrentBorrows = joinedMembers.count;
             retMember.numberOfStillAllowedBorrows = 
                 this.MAX_BORROWS - retMember.numberOfCurrentBorrows;
             return retMember;
@@ -117,8 +117,6 @@ export class BorrowController extends Controller {
              * Execute the actual save in a transaction.
              */
             //TODO: Put transactions, where multiple database actions are executed in a row.
-            console.log("Starting to get manager for transaction...");
-            //const manager = getManager();
            for (let borrowableId of idsOfBorrowables) {
                 const borrow: Borrow = new Borrow();
                 borrow.borrowId = undefined;
@@ -197,20 +195,31 @@ export class BorrowController extends Controller {
 
     setBorrowableFree = async (req, res) => {
         try {
-            const borrowableId = req.params.id;
+            const borrowableId: number = req.params.id;
             const borrowable = await this.borrowableRepository.findOne(borrowableId);
             if (!borrowable) {
                 this.handleError(res, 404, "No borrowable with given id.");
                 return;
             }
-            if (borrowable.status !== BorrowableStatusEnum.BORROWED) {
+            //console.log(`${borrowable.status} - ${BorrowableStatusEnum.BORROWED}`);
+            if (borrowable.status != BorrowableStatusEnum.BORROWED) {
                 this.handleError(res, 400, "Borrowable with given id is not booked.");
                 return;
             }
-            borrowable.status = BorrowableStatusEnum.FREE;
-            const freedBorrowable: Borrowable = await this.borrowableRepository
-                .save(borrowable);
-            res.json({ success: true, borrowable: freedBorrowable });
+            const borrow = await this.borrowRepository
+                .createQueryBuilder('borrow')
+                .innerJoinAndSelect("borrow.borrowable", "borrowable")
+                .where("borrowable.serialNumber = :borrowableId")
+                .setParameter("borrowableId", borrowableId)
+                //.andWhere("NOT borrow.returned")
+                .getMany();
+            console.log(borrow);
+            //borrow.returned = true;
+            //await this.borrowRepository.save(borrow);
+            //borrowable.status = BorrowableStatusEnum.FREE;
+            //const freedBorrowable: Borrowable = await this.borrowableRepository
+            //   .save(borrowable);
+            res.json({ success: true, borrowable: borrowable });
         }
         catch(err) {
             console.log(err);

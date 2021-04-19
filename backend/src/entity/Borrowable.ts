@@ -20,9 +20,9 @@ export class Borrowable {
     maxBorrowTime: number;
 
     /**
-     * Borrowed:  'b';
-     * Free:      'f';
-     * Discarded: 'd';
+     * CD:          'c';
+     * Book:        'b';
+     * Music sheet: 'm';
      */
     @Column({ nullable: false, type: "char", length: 1 })
     type: string;
@@ -31,9 +31,9 @@ export class Borrowable {
     acquirementDate: Date;
 
     /**
-     * CD:          'c';
-     * Book:        'b';
-     * Music sheet: 'm';
+     * Borrowed:  'b';
+     * Free:      'f';
+     * Discarded: 'd';
      */
      @Column({ nullable: false, type: "char", length: 1 })
      status: string;

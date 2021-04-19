@@ -13,7 +13,6 @@ export class MemberController extends Controller {
         member.idCardNumber = req.body.idCardNumber;
         member.address = req.body.address;
         member.status = MemberStatusEnum.ACTIVE;
-        console.log(member);
         try {
             const retrievedMember = await this.repository
                 .createQueryBuilder('member')
