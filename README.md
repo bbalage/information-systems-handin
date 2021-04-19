@@ -34,3 +34,7 @@ A rendszer lehetőséget ad egy bizonyos idő után (pl 30 nap – konfigurálha
 - [ ] Kölcsönzés
 - [ ] Kölcsönzés befejezése
 - [ ] Késések lekérdezése
+
+Additional TODO:
+- [ ] Transactions: Use transactions, where multiple database actions are executed in a row.
+- [ ] SOLID (backend): Use interfaces, function calls instead of long functions, and also services in order to raise code quality.
