@@ -195,9 +195,10 @@ export class BorrowController extends Controller {
 
     setBorrowableFree = async (req, res) => {
         try {
-            const borrowableId: number = req.params.id;
+            const borrowableId: number = req.params.idOfBorrowable;
             const borrowable = await this.borrowableRepository.findOne(borrowableId);
             if (!borrowable) {
+                console.log(`borrowableId: ${borrowableId}`)
                 this.handleError(res, 404, "No borrowable with given id.");
                 return;
             }
@@ -208,18 +209,18 @@ export class BorrowController extends Controller {
             }
             const borrow = await this.borrowRepository
                 .createQueryBuilder('borrow')
-                .innerJoinAndSelect("borrow.borrowable", "borrowable")
-                .where("borrowable.serialNumber = :borrowableId")
-                .setParameter("borrowableId", borrowableId)
-                //.andWhere("NOT borrow.returned")
-                .getMany();
-            console.log(borrow);
-            //borrow.returned = true;
-            //await this.borrowRepository.save(borrow);
-            //borrowable.status = BorrowableStatusEnum.FREE;
-            //const freedBorrowable: Borrowable = await this.borrowableRepository
-            //   .save(borrowable);
-            res.json({ success: true, borrowable: borrowable });
+                .innerJoinAndSelect(
+                    "borrow.borrowable", "borrowable", "borrowable.serialNumber = :borrowableId",
+                    {borrowableId: borrowableId}
+                    )
+                .where("NOT borrow.returned")
+                .getOne();
+            borrow.returned = true;
+            await this.borrowRepository.save(borrow);
+            borrowable.status = BorrowableStatusEnum.FREE;
+            const freedBorrowable: Borrowable = await this.borrowableRepository
+               .save(borrowable);
+            res.json({ success: true, borrowable: freedBorrowable });
         }
         catch(err) {
             console.log(err);
