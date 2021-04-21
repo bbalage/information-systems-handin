@@ -5,7 +5,7 @@ import { Member } from "../entity/Member";
 import { Controller } from "./controller";
 import { BorrowableStatusEnum } from "../util/enums";
 
-interface MemberOutDto extends Member {
+interface MemberOutDtoWithBorrows extends Member {
     numberOfCurrentBorrows?: number;
     numberOfStillAllowedBorrows?: number;
 }
@@ -25,7 +25,7 @@ export class BorrowController extends Controller {
     getMemberWithNumberOfCurrentBorrowsAndReturnInResponse = async (req, res) => {
         try{
             const idOfMember = req.params.id;
-            const retMember: MemberOutDto = await this.getMemberWithNumberOfCurrentBorrows(idOfMember, res);
+            const retMember: MemberOutDtoWithBorrows = await this.getMemberWithNumberOfCurrentBorrows(idOfMember, res);
             res.json({ success: true, data: retMember });
         }
         catch(err) {
@@ -33,9 +33,9 @@ export class BorrowController extends Controller {
         }
     }
 
-    private getMemberWithNumberOfCurrentBorrows = async (idOfMember, res) :Promise<MemberOutDto> => {
+    private getMemberWithNumberOfCurrentBorrows = async (idOfMember, res) :Promise<MemberOutDtoWithBorrows> => {
         try {
-            const retMember: MemberOutDto = await this.memberRepository.findOne(idOfMember);
+            const retMember: MemberOutDtoWithBorrows = await this.memberRepository.findOne(idOfMember);
             if(!retMember) {
                 this.handleError(res, 404, 'No member found with given id.');
                 return;
