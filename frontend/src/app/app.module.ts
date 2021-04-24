@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MemberComponent } from './member/member.component';
 import { BorrowableComponent } from './borrowable/borrowable.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

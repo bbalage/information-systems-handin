@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Member } from '../models/member';
+import { MemberService } from '../services/member.service';
 
 @Component({
   selector: 'app-member',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberComponent implements OnInit {
 
-  constructor() { }
+  members: Member[] = [];
+  success: boolean = true;
 
-  ngOnInit(): void {
+  constructor(private memberService: MemberService) { }
+
+  async ngOnInit() {
+    const response = await this.memberService.loadMembers();
+    this.success = response.success;
+    this.members = response.data;
   }
 
 }
