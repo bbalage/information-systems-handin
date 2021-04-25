@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <form [formGroup]="memberCreateForm">
+          <!--label for="id">Id</label>
+          <input type="text" class="form-control" id="id" formControlName="id">
+          <div class="text-danger" *ngIf="id!.invalid && (id!.dirty || id!.touched)">
+              <small *ngIf="id!.errors!.required">Id must not be empty</small>
+              <small *ngIf="id!.errors!.pattern">Pattern invalid</small>
+          </div-->
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+          <label for="phoneNumber">Phone number</label>
+          <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+          <label for="idCardNumber">Id Card number</label>
+          <input type="text" class="form-control" id="idCardNumber" formControlName="idCardNumber">
+          <!--div class="text-danger" *ngIf="price!.invalid && (price!.dirty || price!.touched)">
+            <small *ngIf="price!.errors!.min">Price must be greater than 0.</small>
+          </div-->
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" formControlName="address">
+          <!--div class="text-danger" *ngIf="imgUrl!.invalid && (imgUrl!.dirty || imgUrl!.touched)">
+            <small *ngIf="imgUrl!.errors!.pattern">Price must be greater than 0.</small>
+          </div-->
+          <!--label for="status">Status</label>
+          <select id="status" class="form-control" formControlName="status">
+            <option *ngFor="let statusOpt of memberStatusDictionary.statuses"
+                [value]="statusOpt">
+                {{ statusOpt }}
+            </option>
+          </select-->
+          <!--input type="text" class="form-control" id="status" formControlName="status"-->
+          <button class="btn btn-primary" [disabled]="memberCreateForm.invalid" (click)="createMember()">Create member</button>
+        </form>
+      </div>
+    </div>
+</div>

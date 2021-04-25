@@ -7,18 +7,23 @@ import { MemberComponent } from './member/member.component';
 import { BorrowableComponent } from './borrowable/borrowable.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MemberCreateFormComponent } from './member/member-create-form/member-create-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     MemberComponent,
     BorrowableComponent,
-    HomeComponent
+    HomeComponent,
+    MemberCreateFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

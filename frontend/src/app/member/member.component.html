@@ -1,20 +1,31 @@
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Phone number</th>
-            <th>Id Card Number</th>
-            <th>Address</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let member of members">
-            <td>{{ member.name }}</td>
-            <td>{{ member.phoneNumber }}</td>
-            <td>{{ member.idCardNumber }}</td>
-            <td>{{ member.address }}</td>
-            <td>{{ member.status }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-success" (click)="navigateToNewMemberForm()">Create member</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone number</th>
+                        <th>Id Card Number</th>
+                        <th>Address</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let member of members">
+                        <td>{{ member.name }}</td>
+                        <td>{{ member.phoneNumber }}</td>
+                        <td>{{ member.idCardNumber }}</td>
+                        <td>{{ member.address }}</td>
+                        <td>{{ member.status }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
