@@ -1,0 +1,10 @@
+<h3>Keresés</h3>
+<form [formGroup]="memberSearchForm">
+    <label for="id">Id</label>
+    <input type="text" class="form-control" id="id" formControlName="id">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+    <label for="idCardNumber">Id Card number</label>
+    <input type="text" class="form-control" id="idCardNumber" formControlName="idCardNumber">
+    <button class="btn btn-primary" (click)="searchMembers()">Search members</button>
+</form>

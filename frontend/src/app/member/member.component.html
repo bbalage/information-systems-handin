@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
+            <app-member-search (searched)="searchMembers($event)"></app-member-search>
+        </div>
+        <div class="col-md-3">
             <button class="btn btn-success" (click)="navigateToNewMemberForm()">Create member</button>
         </div>
     </div>

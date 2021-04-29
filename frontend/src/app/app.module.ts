@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MemberCreateFormComponent } from './member/member-create-form/member-create-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MemberSearchComponent } from './member/member-search/member-search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MemberComponent,
     BorrowableComponent,
     HomeComponent,
-    MemberCreateFormComponent
+    MemberCreateFormComponent,
+    MemberSearchComponent
   ],
   imports: [
     BrowserModule,
