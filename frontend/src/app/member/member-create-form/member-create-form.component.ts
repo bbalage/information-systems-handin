@@ -12,12 +12,11 @@ import { MemberService } from 'src/app/services/member.service';
 export class MemberCreateFormComponent implements OnInit {
 
   memberCreateForm: FormGroup = this.formbuilder.group({
-    //id: ['', Validators.required, Validators.pattern(/[1-9a-zA-Z]/)],
     name: ['', Validators.required],
-    phoneNumber: ['', [Validators.required, Validators.pattern(/^\+[0-9]/)]],
-    idCardNumber: ['', [Validators.required, Validators.pattern(/[1-9a-zA-Z]/)]],
+    phoneNumber: ['', [Validators.required, Validators.pattern(/^\+[0-9 ]+[0-9]$/)]],
+    idCardNumber: ['', [Validators.required, Validators.pattern(/^[1-9a-zA-Z]+$/), 
+      Validators.minLength(8), Validators.maxLength(8)]],
     address: ['', Validators.required],
-    //status: ['', Validators.required]
   });
 
   memberStatusDictionary: MemberStatusDictionary = new MemberStatusDictionary();
