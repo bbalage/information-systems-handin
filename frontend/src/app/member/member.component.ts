@@ -13,6 +13,7 @@ export class MemberComponent implements OnInit {
 
   members: Member[] = [];
   success: boolean = true;
+  msg: string = '';
 
   constructor(
     private memberService: MemberService,
@@ -31,10 +32,16 @@ export class MemberComponent implements OnInit {
   }
 
   async searchMembers(searchQuery: MemberQueryObject) {
-    const response = await this.memberService.searchMembers(searchQuery);
+    const response = await this.memberService.searchMembers(searchQuery)
+      .catch(msg => {
+      this.success = false;
+      this.msg = msg.error.message;
+    });
+  if (response){
     this.success = response.success;
 
     this.members = response.data ? response.data : this.members;
+  };
   }
 
   navigateToNewMemberForm() {

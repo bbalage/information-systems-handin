@@ -13,6 +13,7 @@ export class BorrowableComponent implements OnInit {
 
   borrowables: Borrowable[] = [];
   success: boolean = true;
+  msg: string = '';
 
   constructor(
     private borrowableService: BorrowableService,
@@ -31,10 +32,16 @@ export class BorrowableComponent implements OnInit {
   }
 
   async searchBorrowables(searchQuery: BorrowableQueryObject) {
-    const response = await this.borrowableService.searchBorrowables(searchQuery);
-    this.success = response.success;
+    const response = await this.borrowableService.searchBorrowables(searchQuery)
+      .catch(msg => {
+        this.success = false;
+        this.msg = msg.error.message;
+      });
+    if (response){
+      this.success = response.success;
 
-    this.borrowables = response.data ? response.data : this.borrowables;
+      this.borrowables = response.data ? response.data : this.borrowables;
+    }
   }
 
   //TODO

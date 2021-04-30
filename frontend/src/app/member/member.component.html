@@ -7,7 +7,7 @@
             <button class="btn btn-success" (click)="navigateToNewMemberForm()">Create member</button>
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="success; else elsedo">
         <div class="col-md-12">
                 <table class="table">
                 <thead>
@@ -42,4 +42,9 @@
             </table>
         </div>
     </div>
+    <ng-template #elsedo>
+        <div class="row">
+            <div class="col-12-md">{{ msg }}</div>
+        </div>
+    </ng-template>
 </div>

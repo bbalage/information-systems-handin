@@ -7,14 +7,13 @@
             <button class="btn btn-success" (click)="navigateToNewBorrowableForm()">Create borrowable</button>
         </div>
     </div>
-    <div class="row">
+    <div *ngIf="success; else elsedo" class="row">
         <div class="col-md-12">
                 <table class="table">
                 <thead>
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
-                        <th></th>
                         <th>Max borrow time</th>
                         <th>Type</th>
                         <th>Acquirement date</th>
@@ -42,4 +41,9 @@
             </table>
         </div>
     </div>
+    <ng-template #elsedo>
+        <div class="row">
+            <div class="col-12-md">{{ msg }}</div>
+        </div>
+    </ng-template>
 </div>
