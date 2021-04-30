@@ -24,7 +24,7 @@ export class MemberService {
   }
 
   async updateMember (member: Member) {
-    //TODO
+    this.http.put<Member>(`api/members/update/${member.id}`, member).toPromise();
   }
 
   async deleteMember (id: number) {

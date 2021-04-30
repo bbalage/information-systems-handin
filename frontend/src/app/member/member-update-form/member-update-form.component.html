@@ -1,1 +1,39 @@
-<p>member-update-form works!</p>
+<form [formGroup]="memberUpdateForm">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name" [(ngModel)]="member.name">
+    <div class="text-danger" *ngIf="memberUpdateForm.controls.name!.invalid
+      && (memberUpdateForm.controls.name!.dirty || memberUpdateForm.controls.name!.touched)">
+        <small *ngIf="memberUpdateForm.controls.name!.errors!.required">Name must not be empty</small>
+    </div>
+    <label for="phoneNumber">Phone number</label>
+    <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" [(ngModel)]="member.phoneNumber">
+    <div class="text-danger" *ngIf="memberUpdateForm.controls.phoneNumber!.invalid
+      && (memberUpdateForm.controls.phoneNumber!.dirty || memberUpdateForm.controls.phoneNumber!.touched)">
+        <small *ngIf="memberUpdateForm.controls.phoneNumber!.errors!.required">Phone number must not be empty</small>
+        <small *ngIf="memberUpdateForm.controls.phoneNumber!.errors!.pattern">Pattern invalid</small>
+    </div>
+    <label for="idCardNumber">Id Card number</label>
+    <input type="text" class="form-control" id="idCardNumber" formControlName="idCardNumber" [(ngModel)]="member.idCardNumber">
+    <div class="text-danger" *ngIf="memberUpdateForm.controls.idCardNumber!.invalid
+      && (memberUpdateForm.controls.idCardNumber!.dirty || memberUpdateForm.controls.idCardNumber!.touched)">
+        <small *ngIf="memberUpdateForm.controls.idCardNumber!.errors!.required">Id Card Number must not be empty</small>
+        <small *ngIf="memberUpdateForm.controls.idCardNumber!.errors!.pattern">Pattern invalid</small>
+        <small *ngIf="memberUpdateForm.controls.idCardNumber!.errors!.min">Id Card number must be exactly 8 characters long</small>
+    </div>
+    <label for="address">Address</label>
+    <input type="text" class="form-control" id="address" formControlName="address" [(ngModel)]="member.address">
+    <div class="text-danger" *ngIf="memberUpdateForm.controls.address!.invalid
+      && (memberUpdateForm.controls.address!.dirty || memberUpdateForm.controls.address!.touched)">
+        <small *ngIf="memberUpdateForm.controls.address!.errors!.required">Address must not be empty</small>
+    </div>
+    <!--div class="text-danger" *ngIf="imgUrl!.invalid && (imgUrl!.dirty || imgUrl!.touched)">
+      <small *ngIf="imgUrl!.errors!.pattern">Price must be greater than 0.</small>
+    </div-->
+    <label for="status">Status</label>
+    <select id="status" class="form-control" formControlName="status" [(ngModel)]="member.status">
+      <option value="a">Aktív</option>
+      <option value="i">Inaktív</option>
+    </select>
+    <!--input type="text" class="form-control" id="status" formControlName="status"-->
+    <button class="btn btn-primary" [disabled]="memberUpdateForm.invalid" (click)="updateMember()">Update member</button>
+  </form>

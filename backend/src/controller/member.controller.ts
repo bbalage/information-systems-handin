@@ -63,7 +63,7 @@ export class MemberController extends Controller {
             res.json({ success: true, data: allMembers });
         }
         catch (err) {
-            console.log("Could retrieve members.");
+            console.log("Could not retrieve members.");
             this.handleError(res);
         }
     }
@@ -72,7 +72,6 @@ export class MemberController extends Controller {
         try {
             const id = req.query.id;
             const member = await this.repository.findByIds(id);
-            console.log(member);
             if (!member || member.length == 0) {
                 this.handleError(res, 404, 'No member found with given id.');
                 return;

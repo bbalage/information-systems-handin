@@ -28,7 +28,6 @@ export class MemberComponent implements OnInit {
     this.success = response.success;
     
     this.members = response.data ? response.data : this.members;
-    console.log(this.members[0]);
   }
 
   async searchMembers(searchQuery: MemberQueryObject) {
