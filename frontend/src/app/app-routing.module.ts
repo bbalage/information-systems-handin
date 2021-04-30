@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BorrowableComponent } from './borrowable/borrowable.component';
 import { HomeComponent } from './home/home.component';
 import { MemberCreateFormComponent } from './member/member-create-form/member-create-form.component';
+import { MemberUpdateFormComponent } from './member/member-update-form/member-update-form.component';
 import { MemberComponent } from './member/member.component';
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'member/create',
     component: MemberCreateFormComponent
+  },
+  {
+    path: 'member/update/:id',
+    component: MemberUpdateFormComponent
   },
   {
     path: 'borrowable',

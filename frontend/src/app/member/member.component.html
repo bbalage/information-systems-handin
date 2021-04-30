@@ -17,6 +17,8 @@
                         <th>Id Card Number</th>
                         <th>Address</th>
                         <th>Status</th>
+                        <th>#</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +28,15 @@
                         <td>{{ member.idCardNumber }}</td>
                         <td>{{ member.address }}</td>
                         <td>{{ member.status }}</td>
+                        <td>
+                            <button (click)="navigateToUpdateMemberForm(member.id)" class="btn btn-secondary">Update</button>
+                        </td>
+                        <td>
+                            <button *ngIf="member.status == 'a'; else elseBlock" (click)="deleteMember(member)" class="btn btn-danger">Delete</button>
+                            <ng-template #elseBlock>
+                                <button (click)="activateMember(member)" class="btn btn-info">Activate</button>
+                            </ng-template>
+                        </td>
                     </tr>
                 </tbody>
             </table>

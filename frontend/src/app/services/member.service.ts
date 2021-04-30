@@ -23,6 +23,18 @@ export class MemberService {
     return this.http.post<Member>('/api/members/create', member).toPromise();
   }
 
+  async updateMember (member: Member) {
+    //TODO
+  }
+
+  async deleteMember (id: number) {
+    this.http.delete<Member>(`api/members/delete/${id}`).toPromise();
+  }
+
+  async activateMember (id: number) {
+    this.http.put<Member>(`api/members/update/activate/${id}`, undefined).toPromise()
+  }
+
   private searchParamsToQueryString (searchParams: MemberQueryObject): string {
     let queryString: string = '';
     if (searchParams.id) {

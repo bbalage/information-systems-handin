@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MemberCreateFormComponent } from './member/member-create-form/member-create-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MemberSearchComponent } from './member/member-search/member-search.component';
+import { MemberUpdateFormComponent } from './member/member-update-form/member-update-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MemberSearchComponent } from './member/member-search/member-search.comp
     BorrowableComponent,
     HomeComponent,
     MemberCreateFormComponent,
-    MemberSearchComponent
+    MemberSearchComponent,
+    MemberUpdateFormComponent
   ],
   imports: [
     BrowserModule,
