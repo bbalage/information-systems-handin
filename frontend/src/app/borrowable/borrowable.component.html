@@ -1,1 +1,45 @@
-<p>borrowable works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <app-borrowable-search (searched)="searchBorrowables($event)"></app-borrowable-search>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-success" (click)="navigateToNewBorrowableForm()">Create borrowable</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th></th>
+                        <th>Max borrow time</th>
+                        <th>Type</th>
+                        <th>Acquirement date</th>
+                        <th>Status</th>
+                        <th>#</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let borrowable of borrowables">
+                        <td>{{ borrowable.title }}</td>
+                        <td>{{ borrowable.author }}</td>
+                        <td>{{ borrowable.maxBorrowTime }}</td>
+                        <td>{{ borrowable.type }}</td>
+                        <td>{{ borrowable.acquirementDate }}</td>
+                        <td>{{ borrowable.status }}</td>
+                        <td>
+                            <button (click)="navigateToUpdateBorrowableForm(borrowable.serialNumber)" class="btn btn-secondary">Update</button>
+                        </td>
+                        <td>
+                            <button *ngIf="borrowable.status != 'd'" (click)="deleteBorrowable(borrowable)" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
