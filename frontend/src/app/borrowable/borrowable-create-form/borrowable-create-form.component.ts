@@ -16,7 +16,6 @@ export class BorrowableCreateFormComponent implements OnInit {
     maxBorrowTime: [0, [Validators.required, Validators.min(0)]],
     type: ['b', Validators.required],
     acquirementDate: [new Date(), Validators.required],
-    //status: ['f', Validators.required]
   });
 
   constructor(

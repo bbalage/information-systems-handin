@@ -35,8 +35,14 @@ export class BorrowableController extends Controller {
         }
         
         /*If there is both a title and an author in the query, then find by both.*/
+        const serialNumber = req.query.serialNumber;
         const title = req.query.title;
         const author = req.query.author;
+        
+        if (serialNumber) {
+            this.getById(req, res);
+            return;
+        }
         if (title && author) {
             this.getByTitleAndAuthor(req, res);
             return;
@@ -60,8 +66,8 @@ export class BorrowableController extends Controller {
 
     private getById = async (req, res) => {
         try {
-            const id = req.query.id;
-            const borrowable = await this.repository.findByIds(id);
+            const serialNumber = req.query.serialNumber;
+            const borrowable = await this.repository.findByIds(serialNumber);
             if (!borrowable || borrowable.length == 0) {
                 this.handleError(res, 404, 'No borrowable found with given id.');
                 return;
@@ -164,6 +170,29 @@ export class BorrowableController extends Controller {
         }
         catch (err) {
             console.log("Could not discard Borrowable.");
+            this.handleError(res);
+        }
+    }
+
+    updateBorrowable = async (req, res) => {
+        try {
+            const serialNumber = req.params.serialNumber;
+            if (!serialNumber) {
+                this.handleError(res, 400, 'No id was given');
+                return;
+            }
+            const borrowable = await this.repository.findOne(serialNumber);
+            if (!borrowable) {
+                this.handleError(res, 404, 'No borrowable found with given id.');
+                return;
+            }
+            const newBorrowable = req.body;
+            newBorrowable.serialNumber = borrowable.serialNumber;
+            const updatedBorrowable = await this.repository.save(newBorrowable);
+            res.json({ success: true, data: updatedBorrowable });
+        }
+        catch (err) {
+            console.log("Could not update.");
             this.handleError(res);
         }
     }

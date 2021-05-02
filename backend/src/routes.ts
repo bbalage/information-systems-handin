@@ -22,6 +22,7 @@ export function getRouter(): Router {
     router.post('/borrowables/create', borrowableController.create);
     router.get('/borrowables', borrowableController.get);
     router.delete('/borrowables/delete/:serialNumber', borrowableController.discardBorrowable);
+    router.put('/borrowables/update/:serialNumber', borrowableController.updateBorrowable);
 
     router.get('/borrow/member-data/:id', borrowController.getMemberWithNumberOfCurrentBorrowsAndReturnInResponse);
     router.post('/borrow/create/:memberId', borrowController.createBorrows);

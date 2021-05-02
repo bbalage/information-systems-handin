@@ -1,1 +1,45 @@
-<p>borrowable-update-form works!</p>
+<form [formGroup]="borrowableUpdateForm">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" formControlName="title" [(ngModel)]="borrowable.title">
+    <div class="text-danger" *ngIf="borrowableUpdateForm.controls.title!.invalid
+      && (borrowableUpdateForm.controls.title!.dirty || borrowableUpdateForm.controls.title!.touched)">
+        <small *ngIf="borrowableUpdateForm.controls.title!.errors!.required">Title must not be empty</small>
+    </div>
+
+    <label for="author">Author</label>
+    <input type="text" class="form-control" id="author" formControlName="author" [(ngModel)]="borrowable.author">
+    <div class="text-danger" *ngIf="borrowableUpdateForm.controls.author!.invalid
+      && (borrowableUpdateForm.controls.author!.dirty || borrowableUpdateForm.controls.author!.touched)">
+        <small *ngIf="borrowableUpdateForm.controls.author!.errors!.required">Author must not be empty</small>
+    </div>
+
+    <label for="maxBorrowTime">Max borrow time</label>
+    <input type="text" class="form-control" id="maxBorrowTime" formControlName="maxBorrowTime" [(ngModel)]="borrowable.maxBorrowTime">
+    <div class="text-danger" *ngIf="borrowableUpdateForm.controls.maxBorrowTime!.invalid
+      && (borrowableUpdateForm.controls.maxBorrowTime!.dirty || borrowableUpdateForm.controls.maxBorrowTime!.touched)">
+        <small *ngIf="borrowableUpdateForm.controls.maxBorrowTime!.errors!.required">Max borrow time must not be empty!</small>
+        <small *ngIf="borrowableUpdateForm.controls.maxBorrowTime!.errors!.min">Max borrow time cannopt be negative!</small>
+    </div>
+
+    <label for="type">Type</label>
+    <select id="type" class="form-control" formControlName="type" [(ngModel)]="borrowable.type">
+      <option value="b">Book</option>
+      <option value="c">CD</option>
+      <option value="m">Music sheet</option>
+    </select>
+
+    <label for="acquirementDate">Acquirement date</label>
+    <input type="date" class="form-control" id="acquirementDate" formControlName="acquirementDate" [(ngModel)]="borrowable.acquirementDate">
+    <div class="text-danger" *ngIf="borrowableUpdateForm.controls.acquirementDate!.invalid
+      && (borrowableUpdateForm.controls.acquirementDate!.dirty || borrowableUpdateForm.controls.acquirementDate!.touched)">
+        <small *ngIf="borrowableUpdateForm.controls.acquirementDate!.errors!.required">Acquirement date must not be empty</small>
+    </div>
+
+    <label for="status">Status</label>
+    <select id="status" class="form-control" formControlName="status" [(ngModel)]="borrowable.status">
+      <option value="f">Free</option>
+      <option value="b">Borrowed</option>
+      <option value="d">Discarded</option>
+    </select>
+    <button class="btn btn-primary" [disabled]="borrowableUpdateForm.invalid" (click)="updateBorrowable()">Update borrowable</button>
+</form>

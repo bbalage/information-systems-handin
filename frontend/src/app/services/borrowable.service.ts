@@ -35,6 +35,9 @@ export class BorrowableService {
 
   private searchParamsToQueryString (searchParams: BorrowableQueryObject): string {
     let queryString: string = '';
+    if (searchParams.serialNumber) {
+      queryString += `&serialNumber=${searchParams.serialNumber}`;
+    }
     if (searchParams.title) {
       queryString += `&title=${searchParams.title}`;
     }

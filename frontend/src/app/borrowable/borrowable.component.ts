@@ -51,7 +51,7 @@ export class BorrowableComponent implements OnInit {
 
   //TODO
   navigateToUpdateBorrowableForm(serialNumber: number) {
-    this.router.navigate(['/borrowable/update', serialNumber]);
+    this.router.navigate([`/borrowable/update`, serialNumber]);
   }
 
   deleteBorrowable(borrowable: Borrowable) {
