@@ -1,0 +1,38 @@
+<form [formGroup]="borrowableCreateForm">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" formControlName="title">
+    <div class="text-danger" *ngIf="borrowableCreateForm.controls.title!.invalid
+      && (borrowableCreateForm.controls.title!.dirty || borrowableCreateForm.controls.title!.touched)">
+        <small *ngIf="borrowableCreateForm.controls.title!.errors!.required">Title must not be empty</small>
+    </div>
+
+    <label for="author">Author</label>
+    <input type="text" class="form-control" id="author" formControlName="author">
+    <div class="text-danger" *ngIf="borrowableCreateForm.controls.author!.invalid
+      && (borrowableCreateForm.controls.author!.dirty || borrowableCreateForm.controls.author!.touched)">
+        <small *ngIf="borrowableCreateForm.controls.author!.errors!.required">Author must not be empty</small>
+    </div>
+
+    <label for="maxBorrowTime">Max borrow time</label>
+    <input type="text" class="form-control" id="maxBorrowTime" formControlName="maxBorrowTime">
+    <div class="text-danger" *ngIf="borrowableCreateForm.controls.maxBorrowTime!.invalid
+      && (borrowableCreateForm.controls.maxBorrowTime!.dirty || borrowableCreateForm.controls.maxBorrowTime!.touched)">
+        <small *ngIf="borrowableCreateForm.controls.maxBorrowTime!.errors!.required">Max borrow time must not be empty!</small>
+        <small *ngIf="borrowableCreateForm.controls.maxBorrowTime!.errors!.min">Max borrow time cannopt be negative!</small>
+    </div>
+
+    <label for="type">Status</label>
+    <select id="type" class="form-control" formControlName="type">
+      <option value="b">Book</option>
+      <option value="c">CD</option>
+      <option value="m">Music sheet</option>
+    </select>
+
+    <label for="acquirementDate">Acquirement date</label>
+    <input type="date" class="form-control" id="acquirementDate" formControlName="acquirementDate">
+    <div class="text-danger" *ngIf="borrowableCreateForm.controls.acquirementDate!.invalid
+      && (borrowableCreateForm.controls.acquirementDate!.dirty || borrowableCreateForm.controls.acquirementDate!.touched)">
+        <small *ngIf="borrowableCreateForm.controls.acquirementDate!.errors!.required">Acquirement date must not be empty</small>
+    </div>
+    <button class="btn btn-primary" [disabled]="borrowableCreateForm.invalid" (click)="createBorrowable()">Create borrowable</button>
+  </form>

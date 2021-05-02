@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MemberSearchComponent } from './member/member-search/member-search.component';
 import { MemberUpdateFormComponent } from './member/member-update-form/member-update-form.component';
 import { BorrowableSearchComponent } from './borrowable/borrowable-search/borrowable-search.component';
+import { BorrowableCreateFormComponent } from './borrowable/borrowable-create-form/borrowable-create-form.component';
+import { BorrowableUpdateFormComponent } from './borrowable/borrowable-update-form/borrowable-update-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BorrowableSearchComponent } from './borrowable/borrowable-search/borrow
     MemberCreateFormComponent,
     MemberSearchComponent,
     MemberUpdateFormComponent,
-    BorrowableSearchComponent
+    BorrowableSearchComponent,
+    BorrowableCreateFormComponent,
+    BorrowableUpdateFormComponent
   ],
   imports: [
     BrowserModule,
