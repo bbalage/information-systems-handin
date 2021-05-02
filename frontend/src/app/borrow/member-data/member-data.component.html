@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12-md">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" [value]="memberBorrows.name" readonly>
+            <label for="idCardNumber">Id Card number</label>
+            <input type="text" id="idCardNumber" class="form-control" [value]="memberBorrows.idCardNumber" readonly>
+            <label for="phoneNumber">Phone number</label>
+            <input type="text" id="phoneNumber" class="form-control" [value]="memberBorrows.phoneNumber" readonly>
+            <label for="address">Address</label>
+            <input type="text" id="address" class="form-control" [value]="memberBorrows.address" readonly>
+            <label for="status">Status</label>
+            <select id="status" class="form-control" [value]="memberBorrows.status" readonly>
+                <option value="a">Active</option>
+                <option value="i">Inactive</option>
+            </select>
+            <label for="numberOfCurrentBorrows">Number of current borrows</label>
+            <input type="text" id="numberOfCurrentBorrows" class="form-control" [value]="memberBorrows.numberOfCurrentBorrows" readonly>
+            <label for="numberOfStillAllowedBorrows">Number of still allowed borrows</label>
+            <input type="text" id="numberOfStillAllowedBorrows" class="form-control" [value]="memberBorrows.numberOfStillAllowedBorrows" readonly>
+        </div>
+    </div>
+</div>

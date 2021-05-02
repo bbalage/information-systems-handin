@@ -62,4 +62,8 @@ export class MemberComponent implements OnInit {
     member.status = 'a';
   }
 
+  startBorrow(id: number) {
+    this.router.navigate(['/borrow/member-data', id]);
+  }
+
 }

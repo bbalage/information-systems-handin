@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BorrowComponent } from './borrow/borrow.component';
+import { MemberDataComponent } from './borrow/member-data/member-data.component';
 import { BorrowableCreateFormComponent } from './borrowable/borrowable-create-form/borrowable-create-form.component';
 import { BorrowableUpdateFormComponent } from './borrowable/borrowable-update-form/borrowable-update-form.component';
 import { BorrowableComponent } from './borrowable/borrowable.component';
@@ -36,6 +38,14 @@ const routes: Routes = [
   {
     path: 'borrowable/update/:serialNumber',
     component: BorrowableUpdateFormComponent
+  },
+  {
+    path: 'borrow',
+    component: BorrowComponent
+  },
+  {
+    path: 'borrow/member-data/:id',
+    component: MemberDataComponent
   }
 ];
 

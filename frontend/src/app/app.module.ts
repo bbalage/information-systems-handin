@@ -14,6 +14,8 @@ import { MemberUpdateFormComponent } from './member/member-update-form/member-up
 import { BorrowableSearchComponent } from './borrowable/borrowable-search/borrowable-search.component';
 import { BorrowableCreateFormComponent } from './borrowable/borrowable-create-form/borrowable-create-form.component';
 import { BorrowableUpdateFormComponent } from './borrowable/borrowable-update-form/borrowable-update-form.component';
+import { BorrowComponent } from './borrow/borrow.component';
+import { MemberDataComponent } from './borrow/member-data/member-data.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { BorrowableUpdateFormComponent } from './borrowable/borrowable-update-fo
     MemberUpdateFormComponent,
     BorrowableSearchComponent,
     BorrowableCreateFormComponent,
-    BorrowableUpdateFormComponent
+    BorrowableUpdateFormComponent,
+    BorrowComponent,
+    MemberDataComponent
   ],
   imports: [
     BrowserModule,
