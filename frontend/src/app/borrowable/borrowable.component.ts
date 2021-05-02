@@ -54,9 +54,8 @@ export class BorrowableComponent implements OnInit {
     this.router.navigate(['/borrowable/update', serialNumber]);
   }
 
-  //TODO
   deleteBorrowable(borrowable: Borrowable) {
     this.borrowableService.deleteBorrowable(borrowable.serialNumber);
-    //TODO: Discard
+    borrowable.status = 'd';
   }
 }

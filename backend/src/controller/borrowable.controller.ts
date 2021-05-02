@@ -150,4 +150,21 @@ export class BorrowableController extends Controller {
         }
     }
     
+    discardBorrowable = async (req, res) => {
+        try {
+            const serialNumber = req.params.serialNumber;
+            const borrowables = await this.repository.findByIds(serialNumber);
+            if (borrowables.length == 0) {
+                this.handleError(res, 404, 'No borrowable with that serial number found.');
+                return;
+            }
+            const borrowable = borrowables[0];
+            borrowable.status = BorrowableStatusEnum.DISCARDED;
+            this.repository.save(borrowable);
+        }
+        catch (err) {
+            console.log("Could not discard Borrowable.");
+            this.handleError(res);
+        }
+    }
 }
