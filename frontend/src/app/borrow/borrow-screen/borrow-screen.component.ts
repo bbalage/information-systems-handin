@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { Borrowable } from 'src/app/models/borrowable';
 import { MemberBorrows } from 'src/app/models/memberBorrows';
 import { BorrowService } from 'src/app/services/borrow.service';
+import { BorrowableService } from 'src/app/services/borrowable.service';
 
 @Component({
   selector: 'app-borrow-screen',
@@ -11,6 +14,10 @@ import { BorrowService } from 'src/app/services/borrow.service';
 export class BorrowScreenComponent implements OnInit {
 
   success: boolean = true;
+  stillAllowedBorrows!: number;
+  
+  toCart: Subject<Borrowable> = new EventEmitter();
+  fromCart: Subject<Borrowable> = new EventEmitter();
 
   memberBorrows: MemberBorrows = {
     id: 0,
@@ -36,6 +43,18 @@ export class BorrowScreenComponent implements OnInit {
     if (response.data) {
       this.memberBorrows = response.data;
     }
+
+    this.stillAllowedBorrows = this.memberBorrows.numberOfStillAllowedBorrows;
+  }
+
+  sendToCart (borrowable: Borrowable) {
+    this.toCart.next(borrowable);
+    this.stillAllowedBorrows--;
+  }
+
+  sendToList (borrowable: Borrowable) {
+    this.fromCart.next(borrowable);
+    this.stillAllowedBorrows++;
   }
 
 }

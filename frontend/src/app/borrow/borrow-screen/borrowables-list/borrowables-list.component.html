@@ -20,7 +20,7 @@
             <td>{{ borrowable.acquirementDate }}</td>
             <td>{{ borrowable.status }}</td>
             <td>
-                <button class="btn btn-info" (click)="addToCart(borrowable)">Add to Cart</button>
+                <button *ngIf="borrowable.status === 'f'" class="btn btn-info" (click)="addToCart(borrowable)">Add to Cart</button>
             </td>
         </tr>
     </tbody>
