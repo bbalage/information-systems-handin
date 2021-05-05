@@ -1,3 +1,5 @@
+import { Injectable } from "@angular/core";
+
 export interface Member {
     id: number;
     name: string;
@@ -7,7 +9,10 @@ export interface Member {
     status: string;
 }
 
-export class MemberStatusDictionary {
+@Injectable({
+    providedIn: 'root'
+  })
+  export class MemberStatusDictionary {
     public readonly memberStatus = {
         active: 'a',
         inactive: 'i'

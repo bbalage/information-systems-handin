@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MemberStatusDictionary } from 'src/app/models/member';
 import { MemberBorrows } from 'src/app/models/memberBorrows';
 import { BorrowService } from 'src/app/services/borrow.service';
 
@@ -20,11 +21,13 @@ export class MemberDataComponent implements OnInit {
     numberOfCurrentBorrows: 0,
     numberOfStillAllowedBorrows: 0
   };
+  //memberStatusDictionary: MemberStatusDictionary = new MemberStatusDictionary();
   success: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
-    private borrowService: BorrowService
+    private borrowService: BorrowService,
+    private memberStatusDictionary: MemberStatusDictionary
   ) { }
 
   async ngOnInit() {
@@ -40,4 +43,13 @@ export class MemberDataComponent implements OnInit {
      */
   }
 
+  getDisplayNameOfStatus(status: string) : string {
+    if (status === 'i') {
+      return 'Inactive';
+    }
+    if (status === 'a') {
+      return 'Active';
+    }
+    return '';
+  }
 }
