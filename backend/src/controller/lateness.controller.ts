@@ -30,7 +30,7 @@ export class LatenessController extends Controller {
                 .getMany();
             
             const latenessDtos = this.convertJointTableRowsToLatenessDtos(jointTables);
-            res.json({ success: true, latenessDtos: latenessDtos});
+            res.json({ success: true, data: latenessDtos});
         }
         catch(err) {
             console.log(err);

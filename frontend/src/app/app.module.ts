@@ -20,6 +20,8 @@ import { BorrowablesListComponent } from './borrow/borrow-screen/borrowables-lis
 import { CartComponent } from './borrow/borrow-screen/cart/cart.component';
 import { BorrowScreenComponent } from './borrow/borrow-screen/borrow-screen.component';
 import { BringBackComponent } from './borrow/bring-back/bring-back.component';
+import { LatenessComponent } from './lateness/lateness.component';
+import { LatenessDescriptorComponent } from './lateness/lateness-descriptor/lateness-descriptor.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { BringBackComponent } from './borrow/bring-back/bring-back.component';
     BorrowablesListComponent,
     CartComponent,
     BorrowScreenComponent,
-    BringBackComponent
+    BringBackComponent,
+    LatenessComponent,
+    LatenessDescriptorComponent
   ],
   imports: [
     BrowserModule,
