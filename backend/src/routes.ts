@@ -28,6 +28,7 @@ export function getRouter(): Router {
     router.post('/borrow/create/:memberId', borrowController.createBorrows);
     router.get('/borrow/borrowable-data/:idOfBorrowable', borrowController.getBorrowableWithCurrentBorrowerAndReturn);
     router.post('/borrow/free-borrowable/:idOfBorrowable', borrowController.setBorrowableFree);
+    router.get('/borrow', borrowController.getBorrows);
 
     router.get('/lateness', latenessController.getLatenessOfBorrowables);
 

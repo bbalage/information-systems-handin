@@ -1,1 +1,30 @@
-<p>gjnfdnbgdfn</p>
+<div class="container-float">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Max borrow time</th>
+                        <th>Type</th>
+                        <th>Acquirement date</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let borrowable of borrowed">
+                        <td>{{ borrowable.title }}</td>
+                        <td>{{ borrowable.author }}</td>
+                        <td>{{ borrowable.maxBorrowTime }}</td>
+                        <td>{{ borrowable.type }}</td>
+                        <td>{{ borrowable.acquirementDate }}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="bringBack(borrowable.serialNumber)">Bring back</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

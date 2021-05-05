@@ -58,8 +58,8 @@ export class BorrowScreenComponent implements OnInit {
     this.stillAllowedBorrows++;
   }
 
-  borrow(serialNumbers: number[]) {
-    this.borrowService.borrow(this.memberBorrows.id, serialNumbers);
+  async borrow(serialNumbers: number[]) {
+    await this.borrowService.borrow(this.memberBorrows.id, serialNumbers);
     this.router.navigateByUrl("/borrow")
   }
 

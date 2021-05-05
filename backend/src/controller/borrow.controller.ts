@@ -227,4 +227,29 @@ export class BorrowController extends Controller {
             this.handleError(res);
         }
     }
+
+    getBorrows = async (req, res) => {
+        try {
+            const serialNumber: number = req.query.serialNumber;
+            if (serialNumber) {
+                const borrowables = await this.borrowableRepository
+                    .createQueryBuilder('borrowable')
+                    .where("borrowable.serialNumber LIKE CONCAT('%', :serialNumber, '%')",
+                        {serialNumber: serialNumber})
+                    .andWhere("borrowable.status = 'b'")
+                    .getMany();
+                res.json({success: true, data: "borrowables"});
+                return;
+            }
+            const borrowables = await this.borrowableRepository
+                    .createQueryBuilder('borrowable')
+                    .where("borrowable.status = 'b'")
+                    .getMany();
+            res.json({success: true, data: borrowables});
+        }
+        catch(err) {
+            console.log(err);
+            this.handleError(res);
+        }
+    }
 }
