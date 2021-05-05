@@ -19,6 +19,7 @@ import { MemberDataComponent } from './borrow/borrow-screen/member-data/member-d
 import { BorrowablesListComponent } from './borrow/borrow-screen/borrowables-list/borrowables-list.component';
 import { CartComponent } from './borrow/borrow-screen/cart/cart.component';
 import { BorrowScreenComponent } from './borrow/borrow-screen/borrow-screen.component';
+import { BringBackComponent } from './borrow/bring-back/bring-back.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BorrowScreenComponent } from './borrow/borrow-screen/borrow-screen.comp
     MemberDataComponent,
     BorrowablesListComponent,
     CartComponent,
-    BorrowScreenComponent
+    BorrowScreenComponent,
+    BringBackComponent
   ],
   imports: [
     BrowserModule,

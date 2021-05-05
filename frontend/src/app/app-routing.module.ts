@@ -10,6 +10,7 @@ import { MemberCreateFormComponent } from './member/member-create-form/member-cr
 import { MemberUpdateFormComponent } from './member/member-update-form/member-update-form.component';
 import { MemberComponent } from './member/member.component';
 import { BorrowScreenComponent } from './borrow/borrow-screen/borrow-screen.component';
+import { BringBackComponent } from './borrow/bring-back/bring-back.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'borrow/:id',
     component: BorrowScreenComponent
+  },
+  {
+    path: 'borrow/bring-back/:serialNumber',
+    component: BringBackComponent
   }
 ];
 

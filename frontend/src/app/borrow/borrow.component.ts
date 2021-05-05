@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Borrowable } from '../models/borrowable';
 import { BorrowService } from '../services/borrow.service';
 
@@ -12,6 +13,7 @@ export class BorrowComponent implements OnInit {
   borrowed: Borrowable[] = [];
 
   constructor(
+    private router: Router,
     private borrowService: BorrowService
   ) { }
 
@@ -23,6 +25,6 @@ export class BorrowComponent implements OnInit {
   }
 
   bringBack (serialNumber: number) {
-    console.log("Bringing back");
+    this.router.navigate(['/borrow/bring-back', serialNumber]);
   }
 }
