@@ -15,7 +15,10 @@ import { BorrowableSearchComponent } from './borrowable/borrowable-search/borrow
 import { BorrowableCreateFormComponent } from './borrowable/borrowable-create-form/borrowable-create-form.component';
 import { BorrowableUpdateFormComponent } from './borrowable/borrowable-update-form/borrowable-update-form.component';
 import { BorrowComponent } from './borrow/borrow.component';
-import { MemberDataComponent } from './borrow/member-data/member-data.component';
+import { MemberDataComponent } from './borrow/borrow-screen/member-data/member-data.component';
+import { BorrowablesListComponent } from './borrow/borrow-screen/borrowables-list/borrowables-list.component';
+import { CartComponent } from './borrow/borrow-screen/cart/cart.component';
+import { BorrowScreenComponent } from './borrow/borrow-screen/borrow-screen.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { MemberDataComponent } from './borrow/member-data/member-data.component'
     BorrowableCreateFormComponent,
     BorrowableUpdateFormComponent,
     BorrowComponent,
-    MemberDataComponent
+    MemberDataComponent,
+    BorrowablesListComponent,
+    CartComponent,
+    BorrowScreenComponent
   ],
   imports: [
     BrowserModule,

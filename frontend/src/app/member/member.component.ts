@@ -63,7 +63,7 @@ export class MemberComponent implements OnInit {
   }
 
   startBorrow(id: number) {
-    this.router.navigate(['/borrow/member-data', id]);
+    this.router.navigate(['/borrow', id]);
   }
 
 }

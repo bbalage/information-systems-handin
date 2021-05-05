@@ -1,0 +1,27 @@
+<h3>Choose borrowable:</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Max borrow time</th>
+            <th>Type</th>
+            <th>Acquirement date</th>
+            <th>Status</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let borrowable of borrowables" [class]="borrowable.status === 'f' ? 'table-success' : 'table-danger'">
+            <td>{{ borrowable.title }}</td>
+            <td>{{ borrowable.author }}</td>
+            <td>{{ borrowable.maxBorrowTime }}</td>
+            <td>{{ borrowable.type }}</td>
+            <td>{{ borrowable.acquirementDate }}</td>
+            <td>{{ borrowable.status }}</td>
+            <td>
+                <button class="btn btn-info" (click)="addToCart(borrowable)">Add to Cart</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

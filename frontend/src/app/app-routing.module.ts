@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BorrowComponent } from './borrow/borrow.component';
-import { MemberDataComponent } from './borrow/member-data/member-data.component';
+import { MemberDataComponent } from './borrow/borrow-screen/member-data/member-data.component';
 import { BorrowableCreateFormComponent } from './borrowable/borrowable-create-form/borrowable-create-form.component';
 import { BorrowableUpdateFormComponent } from './borrowable/borrowable-update-form/borrowable-update-form.component';
 import { BorrowableComponent } from './borrowable/borrowable.component';
@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { MemberCreateFormComponent } from './member/member-create-form/member-create-form.component';
 import { MemberUpdateFormComponent } from './member/member-update-form/member-update-form.component';
 import { MemberComponent } from './member/member.component';
+import { BorrowScreenComponent } from './borrow/borrow-screen/borrow-screen.component';
 
 const routes: Routes = [
   {
@@ -44,8 +45,8 @@ const routes: Routes = [
     component: BorrowComponent
   },
   {
-    path: 'borrow/member-data/:id',
-    component: MemberDataComponent
+    path: 'borrow/:id',
+    component: BorrowScreenComponent
   }
 ];
 
