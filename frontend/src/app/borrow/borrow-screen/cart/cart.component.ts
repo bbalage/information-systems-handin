@@ -20,6 +20,9 @@ export class CartComponent implements OnInit {
   @Output()
   fromCart: EventEmitter<Borrowable> = new EventEmitter();
 
+  @Output()
+  borrow: EventEmitter<number[]> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -35,6 +38,10 @@ export class CartComponent implements OnInit {
   }
 
   async borrowItems() {
-    console.log(this.cart);
+    const serialNumbers: number[] = [];
+    for (let borrowable of this.cart) {
+      serialNumbers.push(borrowable.serialNumber);
+    }
+    this.borrow.emit(serialNumbers);
   }
 }

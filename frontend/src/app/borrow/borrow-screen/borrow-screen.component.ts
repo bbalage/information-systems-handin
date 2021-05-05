@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Borrowable } from 'src/app/models/borrowable';
 import { MemberBorrows } from 'src/app/models/memberBorrows';
@@ -33,6 +33,7 @@ export class BorrowScreenComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private borrowService: BorrowService,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -55,6 +56,11 @@ export class BorrowScreenComponent implements OnInit {
   sendToList (borrowable: Borrowable) {
     this.fromCart.next(borrowable);
     this.stillAllowedBorrows++;
+  }
+
+  borrow(serialNumbers: number[]) {
+    this.borrowService.borrow(this.memberBorrows.id, serialNumbers);
+    this.router.navigateByUrl("/borrow")
   }
 
 }

@@ -15,4 +15,8 @@ export class BorrowService {
   async getMemberWithNumberOfCurrentBorrows(id: number) {
     return this.http.get<HttpContainer<MemberBorrows>>(`/api/borrow/member-data/${id}`).toPromise();
   }
+
+  async borrow(id: number, serialNumbers: number[]) {
+    return this.http.post<number[]>(`api/borrow/create/${id}`, serialNumbers).toPromise();
+  }
 }

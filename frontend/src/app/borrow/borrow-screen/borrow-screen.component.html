@@ -4,7 +4,7 @@
             <app-member-data [memberBorrows]="memberBorrows"></app-member-data>
         </div>
         <div class="col-md-8">
-            <app-cart [toCart]="toCart" [stillAllowedBorrows]="stillAllowedBorrows" (fromCart)="sendToList($event)"></app-cart>
+            <app-cart [toCart]="toCart" [stillAllowedBorrows]="stillAllowedBorrows" (fromCart)="sendToList($event)" (borrow)="borrow($event)"></app-cart>
         </div>
     </div>
     <div class="row">
