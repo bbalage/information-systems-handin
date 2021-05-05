@@ -34,7 +34,10 @@
                             <button (click)="navigateToUpdateBorrowableForm(borrowable.serialNumber)" class="btn btn-secondary">Update</button>
                         </td>
                         <td>
-                            <button *ngIf="borrowable.status != 'd'" (click)="deleteBorrowable(borrowable)" class="btn btn-danger">Delete</button>
+                            <button *ngIf="borrowable.status !== 'd'" (click)="deleteBorrowable(borrowable)" class="btn btn-danger">Delete</button>
+                        </td>
+                        <td>
+                            <button *ngIf="borrowable.status === 'b'" (click)="free(borrowable.serialNumber)" class="btn btn-primary">Free</button>
                         </td>
                     </tr>
                 </tbody>

@@ -58,4 +58,8 @@ export class BorrowableComponent implements OnInit {
     this.borrowableService.deleteBorrowable(borrowable.serialNumber);
     borrowable.status = 'd';
   }
+
+  free(serialNumber: number) {
+    this.router.navigate(['/borrow/bring-back', serialNumber]);
+  }
 }
