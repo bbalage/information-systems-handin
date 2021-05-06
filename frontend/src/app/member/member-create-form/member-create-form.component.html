@@ -1,47 +1,43 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6">
-        <form [formGroup]="memberCreateForm">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" formControlName="name">
-          <div class="text-danger" *ngIf="memberCreateForm.controls.name!.invalid
-            && (memberCreateForm.controls.name!.dirty || memberCreateForm.controls.name!.touched)">
-              <small *ngIf="memberCreateForm.controls.name!.errors!.required">Id must not be empty</small>
-          </div>
-          <label for="phoneNumber">Phone number</label>
-          <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
-          <div class="text-danger" *ngIf="memberCreateForm.controls.phoneNumber!.invalid
-            && (memberCreateForm.controls.phoneNumber!.dirty || memberCreateForm.controls.phoneNumber!.touched)">
-              <small *ngIf="memberCreateForm.controls.phoneNumber!.errors!.required">Phone number must not be empty</small>
-              <small *ngIf="memberCreateForm.controls.phoneNumber!.errors!.pattern">Pattern invalid</small>
-          </div>
-          <label for="idCardNumber">Id Card number</label>
-          <input type="text" class="form-control" id="idCardNumber" formControlName="idCardNumber">
-          <div class="text-danger" *ngIf="memberCreateForm.controls.idCardNumber!.invalid
-            && (memberCreateForm.controls.idCardNumber!.dirty || memberCreateForm.controls.idCardNumber!.touched)">
-              <small *ngIf="memberCreateForm.controls.idCardNumber!.errors!.required">Id Card Number must not be empty</small>
-              <small *ngIf="memberCreateForm.controls.idCardNumber!.errors!.pattern">Pattern invalid</small>
-              <small *ngIf="memberCreateForm.controls.idCardNumber!.errors!.min">Id Card number must be exactly 8 characters long</small>
-          </div>
-          <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" formControlName="address">
-          <div class="text-danger" *ngIf="memberCreateForm.controls.address!.invalid
-            && (memberCreateForm.controls.address!.dirty || memberCreateForm.controls.address!.touched)">
-              <small *ngIf="memberCreateForm.controls.address!.errors!.required">Address must not be empty</small>
-          </div>
-          <!--div class="text-danger" *ngIf="imgUrl!.invalid && (imgUrl!.dirty || imgUrl!.touched)">
-            <small *ngIf="imgUrl!.errors!.pattern">Price must be greater than 0.</small>
-          </div-->
-          <!--label for="status">Status</label>
-          <select id="status" class="form-control" formControlName="status">
-            <option *ngFor="let statusOpt of memberStatusDictionary.statuses"
-                [value]="statusOpt">
-                {{ statusOpt }}
-            </option>
-          </select-->
-          <!--input type="text" class="form-control" id="status" formControlName="status"-->
-          <button class="btn btn-primary" [disabled]="memberCreateForm.invalid" (click)="createMember()">Create member</button>
-        </form>
-      </div>
+  <form [formGroup]="memberCreateForm">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+    <div class="text-danger" *ngIf="memberCreateForm.controls.name!.invalid
+      && (memberCreateForm.controls.name!.dirty || memberCreateForm.controls.name!.touched)">
+        <small *ngIf="memberCreateForm.controls.name!.errors!.required">Id must not be empty</small>
     </div>
+    <label for="phoneNumber">Phone number</label>
+    <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+    <div class="text-danger" *ngIf="memberCreateForm.controls.phoneNumber!.invalid
+      && (memberCreateForm.controls.phoneNumber!.dirty || memberCreateForm.controls.phoneNumber!.touched)">
+        <small *ngIf="memberCreateForm.controls.phoneNumber!.errors!.required">Phone number must not be empty</small>
+        <small *ngIf="memberCreateForm.controls.phoneNumber!.errors!.pattern">Pattern invalid</small>
+    </div>
+    <label for="idCardNumber">Id Card number</label>
+    <input type="text" class="form-control" id="idCardNumber" formControlName="idCardNumber">
+    <div class="text-danger" *ngIf="memberCreateForm.controls.idCardNumber!.invalid
+      && (memberCreateForm.controls.idCardNumber!.dirty || memberCreateForm.controls.idCardNumber!.touched)">
+        <small *ngIf="memberCreateForm.controls.idCardNumber!.errors!.required">Id Card Number must not be empty</small>
+        <small *ngIf="memberCreateForm.controls.idCardNumber!.errors!.pattern">Pattern invalid</small>
+        <small *ngIf="memberCreateForm.controls.idCardNumber!.errors!.min">Id Card number must be exactly 8 characters long</small>
+    </div>
+    <label for="address">Address</label>
+    <input type="text" class="form-control" id="address" formControlName="address">
+    <div class="text-danger" *ngIf="memberCreateForm.controls.address!.invalid
+      && (memberCreateForm.controls.address!.dirty || memberCreateForm.controls.address!.touched)">
+        <small *ngIf="memberCreateForm.controls.address!.errors!.required">Address must not be empty</small>
+    </div>
+    <!--div class="text-danger" *ngIf="imgUrl!.invalid && (imgUrl!.dirty || imgUrl!.touched)">
+      <small *ngIf="imgUrl!.errors!.pattern">Price must be greater than 0.</small>
+    </div-->
+    <!--label for="status">Status</label>
+    <select id="status" class="form-control" formControlName="status">
+      <option *ngFor="let statusOpt of memberStatusDictionary.statuses"
+          [value]="statusOpt">
+          {{ statusOpt }}
+      </option>
+    </select-->
+    <!--input type="text" class="form-control" id="status" formControlName="status"-->
+    <button class="btn btn-primary" [disabled]="memberCreateForm.invalid" (click)="createMember()">Create member</button>
+  </form>
 </div>

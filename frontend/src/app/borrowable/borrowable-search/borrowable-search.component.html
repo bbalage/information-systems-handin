@@ -1,8 +1,10 @@
-<h3>Search borrowables</h3>
-<form [formGroup]="borrowableSearchForm">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" formControlName="title">
-    <label for="author">Author</label>
-    <input type="text" class="form-control" id="author" formControlName="author">
-    <button class="btn btn-primary" (click)="searchBorrowables()">Search borrowables</button>
-</form>
+<div class="card my-box">
+    <h3 class="card-header bg-primary text-white">Search borrowables</h3>
+    <form [formGroup]="borrowableSearchForm">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" id="author" formControlName="author">
+        <button class="btn btn-primary my-box" style="float: right;" (click)="searchBorrowables()">Search borrowables</button>
+    </form>
+</div>

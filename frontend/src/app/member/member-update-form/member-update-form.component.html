@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <form [formGroup]="memberUpdateForm">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" formControlName="name" [(ngModel)]="member.name">
@@ -37,3 +38,4 @@
     <!--input type="text" class="form-control" id="status" formControlName="status"-->
     <button class="btn btn-primary" [disabled]="memberUpdateForm.invalid" (click)="updateMember()">Update member</button>
   </form>
+  </div>

@@ -1,4 +1,5 @@
-<form [formGroup]="borrowableUpdateForm">
+<div class="container-fluid">
+  <form [formGroup]="borrowableUpdateForm">
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" formControlName="title" [(ngModel)]="borrowable.title">
     <div class="text-danger" *ngIf="borrowableUpdateForm.controls.title!.invalid
@@ -42,4 +43,5 @@
       <option value="d">Discarded</option>
     </select>
     <button class="btn btn-primary" [disabled]="borrowableUpdateForm.invalid" (click)="updateBorrowable()">Update borrowable</button>
-</form>
+  </form>
+</div>

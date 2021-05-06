@@ -1,47 +1,57 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-9">
+<div class="container-fluid">
+    <div class="row my-box">
+        <div class="col-md-6">
             <app-borrowable-search (searched)="searchBorrowables($event)"></app-borrowable-search>
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-success" (click)="navigateToNewBorrowableForm()">Create borrowable</button>
-        </div>
     </div>
-    <div *ngIf="success; else elsedo" class="row">
-        <div class="col-md-12">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Max borrow time</th>
-                        <th>Type</th>
-                        <th>Acquirement date</th>
-                        <th>Status</th>
-                        <th>#</th>
-                        <th>#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let borrowable of borrowables">
-                        <td>{{ borrowable.title }}</td>
-                        <td>{{ borrowable.author }}</td>
-                        <td>{{ borrowable.maxBorrowTime }}</td>
-                        <td>{{ borrowable.type }}</td>
-                        <td>{{ borrowable.acquirementDate }}</td>
-                        <td>{{ borrowable.status }}</td>
-                        <td>
-                            <button (click)="navigateToUpdateBorrowableForm(borrowable.serialNumber)" class="btn btn-secondary">Update</button>
-                        </td>
-                        <td>
-                            <button *ngIf="borrowable.status !== 'd'" (click)="deleteBorrowable(borrowable)" class="btn btn-danger">Delete</button>
-                        </td>
-                        <td>
-                            <button *ngIf="borrowable.status === 'b'" (click)="free(borrowable.serialNumber)" class="btn btn-primary">Free</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Borrowables</h3>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success btn-lg" style="float: right;" (click)="navigateToNewBorrowableForm()">Create borrowable</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="success; else elsedo" class="row">
+            <div class="col-md-12">
+                    <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Max borrow time</th>
+                            <th>Type</th>
+                            <th>Acquirement date</th>
+                            <th>Status</th>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let borrowable of borrowables">
+                            <td>{{ borrowable.title }}</td>
+                            <td>{{ borrowable.author }}</td>
+                            <td>{{ borrowable.maxBorrowTime }}</td>
+                            <td>{{ typeConvert(borrowable.type) }}</td>
+                            <td>{{ borrowable.acquirementDate }}</td>
+                            <td>{{ statusConvert(borrowable.status) }}</td>
+                            <td>
+                                <button (click)="navigateToUpdateBorrowableForm(borrowable.serialNumber)" class="btn btn-secondary">Update</button>
+                            </td>
+                            <td>
+                                <button *ngIf="borrowable.status !== 'd'" (click)="deleteBorrowable(borrowable)" class="btn btn-danger">Delete</button>
+                            </td>
+                            <td>
+                                <button *ngIf="borrowable.status === 'b'" (click)="free(borrowable.serialNumber)" class="btn btn-primary">Free</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <ng-template #elsedo>

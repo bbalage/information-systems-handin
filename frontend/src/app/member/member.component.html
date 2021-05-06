@@ -1,48 +1,58 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-6">
             <app-member-search (searched)="searchMembers($event)"></app-member-search>
         </div>
-        <div class="col-md-3">
-            <button class="btn btn-success" (click)="navigateToNewMemberForm()">Create member</button>
-        </div>
     </div>
-    <div class="row" *ngIf="success; else elsedo">
-        <div class="col-md-12">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone number</th>
-                        <th>Id Card Number</th>
-                        <th>Address</th>
-                        <th>Status</th>
-                        <th>#</th>
-                        <th>#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let member of members">
-                        <td>{{ member.name }}</td>
-                        <td>{{ member.phoneNumber }}</td>
-                        <td>{{ member.idCardNumber }}</td>
-                        <td>{{ member.address }}</td>
-                        <td>{{ member.status }}</td>
-                        <td>
-                            <button (click)="navigateToUpdateMemberForm(member.id)" class="btn btn-secondary">Update</button>
-                        </td>
-                        <td>
-                            <button *ngIf="member.status == 'a'; else elseBlock" (click)="deleteMember(member)" class="btn btn-danger">Delete</button>
-                            <ng-template #elseBlock>
-                                <button (click)="activateMember(member)" class="btn btn-info">Activate</button>
-                            </ng-template>
-                        </td>
-                        <td>
-                            <button (click)="startBorrow(member.id)" class="btn btn-primary">Borrow</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Members</h3>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success btn-lg" style="float: right;" (click)="navigateToNewMemberForm()">Create member</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="success; else elsedo">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone number</th>
+                            <th>Id Card Number</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>#</th>
+                            <th>#</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let member of members">
+                            <td>{{ member.name }}</td>
+                            <td>{{ member.phoneNumber }}</td>
+                            <td>{{ member.idCardNumber }}</td>
+                            <td>{{ member.address }}</td>
+                            <td>{{ statusConvert(member.status) }}</td>
+                            <td>
+                                <button (click)="navigateToUpdateMemberForm(member.id)" class="btn btn-secondary">Update</button>
+                            </td>
+                            <td>
+                                <button *ngIf="member.status == 'a'; else elseBlock" (click)="deleteMember(member)" class="btn btn-danger">Delete</button>
+                                <ng-template #elseBlock>
+                                    <button (click)="activateMember(member)" class="btn btn-info">Activate</button>
+                                </ng-template>
+                            </td>
+                            <td>
+                                <button (click)="startBorrow(member.id)" class="btn btn-primary">Borrow</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <ng-template #elsedo>

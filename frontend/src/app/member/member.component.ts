@@ -66,4 +66,15 @@ export class MemberComponent implements OnInit {
     this.router.navigate(['/borrow', id]);
   }
 
+  statusConvert(status: string) {
+    switch (status) {
+      case 'a':
+        return 'Active';
+      case 'i':
+        return 'Inactive';
+      default:
+        return '';
+    }
+  }
+
 }

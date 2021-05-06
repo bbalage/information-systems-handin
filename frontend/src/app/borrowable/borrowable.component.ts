@@ -62,4 +62,30 @@ export class BorrowableComponent implements OnInit {
   free(serialNumber: number) {
     this.router.navigate(['/borrow/bring-back', serialNumber]);
   }
+
+  typeConvert(type: string): string {
+    switch(type) {
+      case 'b':
+        return "Book";
+      case 'c':
+        return "CD";
+      case 'm':
+        return "Music Sheet";
+      default:
+        return "";
+    }
+  }
+
+  statusConvert(status: string): string {
+    switch(status) {
+      case 'f':
+        return "Free";
+      case 'b':
+        return "Borrowed";
+      case 'd':
+        return "Discarded";
+      default:
+        return "";
+    }
+  }
 }

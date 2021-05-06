@@ -1,4 +1,5 @@
-<form [formGroup]="borrowableCreateForm">
+<div class="container-fluid">
+  <form [formGroup]="borrowableCreateForm">
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" formControlName="title">
     <div class="text-danger" *ngIf="borrowableCreateForm.controls.title!.invalid
@@ -36,3 +37,4 @@
     </div>
     <button class="btn btn-primary" [disabled]="borrowableCreateForm.invalid" (click)="createBorrowable()">Create borrowable</button>
   </form>
+</div>
