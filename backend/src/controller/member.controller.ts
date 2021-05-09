@@ -39,15 +39,20 @@ export class MemberController extends Controller {
             return;
         }
         
-        /*If there is an idCardNumber in the query, then find by idCardNumber.*/
         const idCardNumber = req.query.idCardNumber;
+        const name = req.query.name;
+        if (idCardNumber) {
+            this.getByIdCardNumberAndName(req, res);
+            return;
+        }
+
+        /*If there is an idCardNumber in the query, then find by idCardNumber.*/
         if (idCardNumber) {
             this.getByIdCardNumber(req, res);
             return;
         }
 
         /*If there is a name in the query, then find by name.*/
-        const name = req.query.name;
         if (name) {
             this.getByName(req, res);
             return;
@@ -80,6 +85,29 @@ export class MemberController extends Controller {
         }
         catch (err) {
             console.log("Could not find by id.");
+            this.handleError(res);
+        }
+    }
+
+    private getByIdCardNumberAndName = async (req, res) => {
+        try {
+            const idCardNumber = req.query.idCardNumber;
+            const name = req.query.name;
+            const members = await this.repository
+                .createQueryBuilder('member')
+                .where("member.idCardNumber LIKE CONCAT('%', :idCardNumber, '%')",
+                    {idCardNumber: idCardNumber})
+                .andWhere("member.name LIKE CONCAT('%', :name, '%')",
+                    {name: name})
+                .getMany();
+            if (!members || members.length == 0) {
+                this.handleError(res, 404, 'No member with that Id Card Number found.');
+                return;
+            }
+            res.json({ success: true, data: members });
+        }
+        catch (err) {
+            console.log("Could not find by Id Card Number.");
             this.handleError(res);
         }
     }

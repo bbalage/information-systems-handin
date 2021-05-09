@@ -21,7 +21,6 @@ export class LatenessComponent implements OnInit {
     if(response.data) {
       this.latenesses = response.data;
     }
-    console.log(this.latenesses);
   }
 
 }

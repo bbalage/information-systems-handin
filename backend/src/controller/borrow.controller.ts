@@ -72,8 +72,7 @@ export class BorrowController extends Controller {
             */
             if (member.numberOfStillAllowedBorrows < idsOfBorrowables) {
                 const message = 
-                    `This user cannot borrow ${idsOfBorrowables.length}. 
-                    The maximum the user can borrow is: ${member.numberOfStillAllowedBorrows}`;
+                    `This user cannot borrow ${idsOfBorrowables.length}. The maximum the user can borrow is: ${member.numberOfStillAllowedBorrows}`;
                 this.handleError(res, 400, message);
                 return;
             }

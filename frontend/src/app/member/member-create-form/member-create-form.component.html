@@ -27,17 +27,6 @@
       && (memberCreateForm.controls.address!.dirty || memberCreateForm.controls.address!.touched)">
         <small *ngIf="memberCreateForm.controls.address!.errors!.required">Address must not be empty</small>
     </div>
-    <!--div class="text-danger" *ngIf="imgUrl!.invalid && (imgUrl!.dirty || imgUrl!.touched)">
-      <small *ngIf="imgUrl!.errors!.pattern">Price must be greater than 0.</small>
-    </div-->
-    <!--label for="status">Status</label>
-    <select id="status" class="form-control" formControlName="status">
-      <option *ngFor="let statusOpt of memberStatusDictionary.statuses"
-          [value]="statusOpt">
-          {{ statusOpt }}
-      </option>
-    </select-->
-    <!--input type="text" class="form-control" id="status" formControlName="status"-->
     <button class="btn btn-primary" [disabled]="memberCreateForm.invalid" (click)="createMember()">Create member</button>
   </form>
 </div>

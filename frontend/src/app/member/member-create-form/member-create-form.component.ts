@@ -31,10 +31,9 @@ export class MemberCreateFormComponent implements OnInit {
     
   }
 
-  createMember() {
+  async createMember() {
     const member = this.memberCreateForm.value;
-    this.memberService.createMember(member);
-    console.log(member);
+    await this.memberService.createMember(member);
     this.router.navigateByUrl('/member');
   }
 

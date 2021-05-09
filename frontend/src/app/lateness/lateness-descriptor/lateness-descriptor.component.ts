@@ -16,4 +16,16 @@ export class LatenessDescriptorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  typeConvert(type: string): string {
+    switch(type) {
+      case 'b':
+        return "Book";
+      case 'c':
+        return "CD";
+      case 'm':
+        return "Music Sheet";
+      default:
+        return "";
+    }
+  }
 }

@@ -17,7 +17,7 @@
                         <td>{{ borrowable.title }}</td>
                         <td>{{ borrowable.author }}</td>
                         <td>{{ borrowable.maxBorrowTime }}</td>
-                        <td>{{ borrowable.type }}</td>
+                        <td>{{ typeConvert(borrowable.type) }}</td>
                         <td>{{ borrowable.acquirementDate }}</td>
                         <td>
                             <button class="btn btn-primary" (click)="bringBack(borrowable.serialNumber)">Bring back</button>
