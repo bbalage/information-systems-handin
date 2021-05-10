@@ -1,3 +1,21 @@
+# Indítás
+
+Egy terminálból:
+1. git clone https://github.com/bbalage/information-systems-handin.git
+
+A information-systems-handin/backend/ormconfig.json fájlban a username, password és database
+adattagok kiigazítása a helyi konfigurációk szerint.
+
+Terminálból ezt követően:
+1. cd information-systems-handin/backend
+2. npm i
+3. npm run typeorm-migration-run
+4. npm run start
+
+Egy másik terminálból ezt követően:
+1. cd information-systems-handin/frontend
+2. npm i
+3. npm run start
 
 # Feladatkiírás:
 ## 2. Könyvtári nyilvántartás

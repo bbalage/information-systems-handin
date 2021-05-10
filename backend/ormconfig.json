@@ -4,7 +4,7 @@
    "port": 3306,
    "username": "n5if3v",
    "password": "n5if3vX?9",
-   "database": "information_systems_handin",
+   "database": "info_rendszerek_beadando",
    "synchronize": false,
    "logging": false,
    "entities": [
