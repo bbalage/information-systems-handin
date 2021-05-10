@@ -49,8 +49,8 @@ export class MemberUpdateFormComponent implements OnInit {
     }
   }
 
-  updateMember() {
-    this.memberService.updateMember(this.member);
+  async updateMember() {
+    await this.memberService.updateMember(this.member);
     this.router.navigateByUrl('/member');
   }
 

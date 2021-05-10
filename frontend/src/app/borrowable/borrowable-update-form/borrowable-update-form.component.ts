@@ -50,8 +50,8 @@ export class BorrowableUpdateFormComponent implements OnInit {
     }
   }
 
-  updateBorrowable() {
-    this.borrowableService.updateBorrowable(this.borrowable);
+  async updateBorrowable() {
+    await this.borrowableService.updateBorrowable(this.borrowable);
     this.router.navigateByUrl('/borrowable');
   }
 
